@@ -98,7 +98,7 @@ svg{display:block}
 .rpl i{position:absolute;border-radius:50%;background:currentColor;opacity:.12;transform:scale(0);animation:rpl 420ms var(--ease-out) forwards}
 .rpl.out{opacity:0;transition:opacity 300ms linear}
 @keyframes rpl{to{transform:scale(1)}}
-.btn,.icon-btn,.tab,.opt,.wi,a.wg-head,.row,.pcard,.office,.pulse-cell,.strat-entry,.quiet-link,.fab,.side-fab,.searchbar,.side-search,.seg button,.tab-btn,.chip,.dchip,.fchip,.filter-btn,.cobrar-btn,.cal-day,.choice,.demo-switch,.side-me,.side-brand,.me-btn,.back-link,.link-out,.back-btn,details.grp summary{position:relative}
+.btn,.icon-btn,.tab,.opt,.wi,a.wg-head,.row,.pcard,.office,.pulse-cell,.strat-entry,.quiet-link,.fab,.side-fab,.searchbar,.side-search,.seg button,.tab-btn,.chip,.dchip,.fchip,.filter-btn,.cobrar-btn,.cal-day,.choice,.demo-switch,.side-me,.side-brand,.me-btn,.back-link,.link-out,.back-btn,.crow,.chat-send,.chat-proj,details.grp summary{position:relative}
 
 /* ───────── type (M3 scale, Roboto) ───────── */
 .t-display{font-size:32px;line-height:40px;font-weight:700;letter-spacing:-.01em;text-wrap:balance}
@@ -219,6 +219,8 @@ button.pill:active{background:var(--md-surface-container-high)}
 .tab[aria-current=page] .nav-ind{background:var(--md-secondary-container);color:var(--md-on-secondary-container)}
 [aria-current=page] .nav-ind .on{display:block}
 [aria-current=page] .nav-ind .off{display:none}
+.nav-badge{position:absolute;top:-4px;left:calc(50% + 4px);min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:var(--md-seal-hot);color:#fff;font-size:11px;font-weight:600;line-height:16px;text-align:center;box-shadow:0 0 0 2px var(--md-surface-container)}
+.tabbar--dense{gap:0;padding-left:calc(4px + var(--safe-l));padding-right:calc(4px + var(--safe-r))}
 @media (hover:hover){.tab:not([aria-current=page]):hover .nav-ind{background:rgba(29,28,21,.08)}}
 
 /* extended FAB */
@@ -602,6 +604,87 @@ textarea.input{min-height:96px;resize:none}
 .composer-f{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0 0 6px;box-shadow:inset 0 1px 0 var(--line)}
 .composer-f .t-caption{font-size:13px}
 
+/* ───────── conversas ───────── */
+.chat-list{margin-top:4px}
+.crow{display:flex;align-items:center;gap:12px;min-height:72px;padding:10px 16px 10px 12px;background:var(--paper);transition:background var(--d-1)}
+.crow+.crow::before{content:"";position:absolute;top:0;left:68px;right:0;height:1px;background:var(--line);transform:scaleY(.5);transform-origin:top}
+.crow:active{background:var(--md-surface-container-low)}
+@media (hover:hover){.crow:hover{background:var(--md-surface-container-low)}}
+.crow-ico{display:grid;place-items:center;flex:none;width:44px;height:44px;border-radius:50%;background:var(--md-primary-container);color:var(--md-on-primary-container)}
+.crow-main{flex:1;min-width:0}
+.crow-top,.crow-bot{display:flex;align-items:center;gap:8px}
+.crow-name{flex:1;min-width:0;font-size:15.5px;line-height:21px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.crow-when{flex:none;font-size:12.5px;line-height:18px;color:var(--ink-3)}
+.crow-bot{margin-top:1px}
+.crow-p{flex:1;min-width:0;font-size:14px;line-height:20px;color:var(--ink-3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.crow-p.none{font-style:italic}
+.crow.unread .crow-p{color:var(--ink);font-weight:500}
+.crow.unread .crow-when{color:var(--md-primary);font-weight:700}
+
+/* a conversa fecha a página: cabeçalho, mensagens que rolam e campo de envio fixo no rodapé */
+body.in-chat{overflow:hidden}
+.app--chat .demo,.app--chat .topbar,.app--chat .tabbar,.app--chat .fab{display:none}
+.app--chat .main{padding:0;max-width:none}
+.app--chat .page-anim{animation:none}
+.chat{position:fixed;left:0;right:0;top:var(--chat-top,0px);height:var(--chat-h,100dvh);z-index:25;display:flex;flex-direction:column;background:var(--bg)}
+.chat-head{flex:none;display:flex;align-items:center;gap:4px;padding:calc(var(--safe-t) + 4px) calc(8px + var(--safe-r)) 4px calc(4px + var(--safe-l));background:var(--md-surface-container);box-shadow:0 1px 0 var(--md-hairline)}
+.chat-title{flex:1;min-width:0;padding:0 4px}
+.chat-title h1{margin:0;display:block;font-size:16px;line-height:22px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.chat-title small{display:block;font-size:13px;line-height:18px;color:var(--ink-3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.chat-proj{display:inline-flex;align-items:center;gap:6px;flex:none;height:44px;padding:0 14px 0 10px;border-radius:var(--r-full);color:var(--md-primary);font-size:14px;font-weight:500;transition:background var(--d-1)}
+.chat-proj .i{width:20px;height:20px}
+.chat-proj:active{background:rgba(104,96,57,.12)}
+@media (hover:hover){.chat-proj:hover{background:rgba(104,96,57,.08)}}
+.chat-scroll{flex:1;min-height:0;display:flex;flex-direction:column;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:4px calc(12px + var(--safe-r)) 12px calc(12px + var(--safe-l))}
+.chat-thread{flex:none;margin-top:auto;display:flex;flex-direction:column}
+.chat-day{display:flex;justify-content:center;margin:16px 0 8px}
+.chat-day span{padding:4px 12px;border-radius:var(--r-full);background:var(--md-surface-container-high);color:var(--md-on-secondary-container);font-size:12px;line-height:16px;font-weight:500}
+.msg{display:flex;align-items:flex-start;gap:8px;margin-top:2px}
+.msg.first{margin-top:10px}
+.chat-day+.msg.first{margin-top:0}
+.msg.mine{justify-content:flex-end}
+.msg-av{flex:none;width:32px}
+.msg-main{display:flex;flex-direction:column;align-items:flex-start;min-width:0;max-width:min(80%,560px)}
+.mine .msg-main{align-items:flex-end}
+.msg-name{margin:0 0 2px 12px;font-size:12.5px;line-height:16px;font-weight:500;color:var(--ink-2)}
+.bubble{padding:8px 12px 7px;border-radius:18px;font-size:15px;line-height:21px;overflow-wrap:anywhere}
+.msg-text{white-space:pre-wrap}
+.theirs .bubble{background:var(--paper);color:var(--ink);box-shadow:0 0 0 1px var(--md-hairline)}
+.mine .bubble{background:var(--md-primary-container);color:var(--md-on-primary-container)}
+.theirs.last .bubble{border-bottom-left-radius:6px}
+.mine.last .bubble{border-bottom-right-radius:6px}
+.msg-time{float:right;margin:7px 0 -2px 12px;font-size:11.5px;line-height:14px;color:var(--ink-3)}
+.mine .msg-time{color:var(--md-on-surface-variant)}
+.bubble::after{content:"";display:block;clear:both}
+.mine .mention{color:var(--md-on-primary-container);font-weight:700}
+.chat-empty{margin:auto;max-width:30ch;padding:24px 8px;text-align:center}
+.chat-empty .ico{display:inline-grid;place-items:center;width:64px;height:64px;border-radius:50%;background:var(--md-primary-container);color:var(--md-on-primary-container)}
+.chat-empty .ico .i{width:28px;height:28px}
+.chat-empty h2{margin-top:16px;font-size:20px;line-height:26px;font-weight:700}
+.chat-empty p{margin-top:6px;font-size:15px;line-height:22px;color:var(--ink-2)}
+.chat-composer{flex:none;padding:8px calc(12px + var(--safe-r)) calc(6px + var(--safe-b)) calc(12px + var(--safe-l));background:var(--md-surface-container)}
+.chat.kb .chat-composer{padding-bottom:6px}
+.chat-row{display:flex;align-items:flex-end;gap:8px}
+.chat-input{flex:1;min-width:0;display:block;min-height:48px;max-height:136px;padding:13px 18px;border:0;border-radius:24px;background:var(--paper);box-shadow:inset 0 0 0 1px var(--md-outline-variant);font-size:16px;line-height:22px;color:var(--ink);resize:none;overflow-y:auto;-webkit-appearance:none;appearance:none;transition:box-shadow var(--d-2)}
+.chat-input::placeholder{color:var(--ink-3)}
+.chat-input:focus,.chat-input:focus-visible{outline:none;box-shadow:inset 0 0 0 2px var(--md-primary)}
+.chat-send{display:grid;place-items:center;flex:none;width:48px;height:48px;border-radius:50%;background:var(--md-primary);color:var(--md-on-primary);transition:background var(--d-2),color var(--d-2)}
+.chat-send[aria-disabled=true]{background:var(--md-surface-container-highest);color:var(--ink-3)}
+.chat-note{margin-top:6px;text-align:center;font-size:12px;line-height:16px;color:var(--ink-3);text-wrap:balance}
+
+/* projeto: últimas mensagens e a entrada para a conversa */
+.peek{padding:4px 16px 16px}
+.peek ul{display:flex;flex-direction:column}
+.peek-msg{display:grid;grid-template-columns:20px minmax(0,1fr);gap:10px;padding:12px 0}
+.peek-msg+.peek-msg{box-shadow:inset 0 1px 0 var(--line)}
+.peek-msg p{display:block;font-size:14px;line-height:20px;color:var(--ink-2);min-width:0}
+.peek-msg b{margin-right:8px;font-weight:700;color:var(--ink)}
+.peek-when{font-size:12.5px;color:var(--ink-3)}
+.peek-text{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-top:1px}
+.peek-none{padding:20px 0 16px;font-size:14px;color:var(--ink-3);text-align:center}
+.peek .btn{margin-top:4px}
+.btn .bad{margin-left:2px}
+
 /* ───────── estratégica ───────── */
 .sim-pill{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 8px;border-radius:var(--r-sm);font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--md-on-secondary-container);background:var(--md-secondary-container)}
 .strat-over{display:flex;align-items:center;gap:10px;margin-bottom:10px}
@@ -793,6 +876,12 @@ body.dragging,body.dragging *{cursor:grabbing!important;-webkit-user-select:none
   .side-note{padding:0 12px;font-size:12px;color:var(--ink-3)}
   .main,.has-fab .main{padding:40px var(--gutter) 96px;max-width:1120px;width:100%}
   .main--wide{max-width:none}
+  .app--chat .main{padding:0;max-width:none}
+  .chat{left:288px}
+  .chat-head,.chat-composer{padding-left:max(16px,calc((100% - 760px) / 2));padding-right:max(16px,calc((100% - 760px) / 2))}
+  .chat-scroll{padding-left:max(16px,calc((100% - 760px) / 2));padding-right:max(16px,calc((100% - 760px) / 2))}
+  .chat-list{max-width:760px}
+  .side-nav .nav-badge{left:auto;right:-8px;top:-6px;box-shadow:none}
   .page-head{padding:0 0 24px}
   .t-title{font-size:36px;line-height:44px}
   .t-display{font-size:40px;line-height:48px}
@@ -1030,6 +1119,53 @@ const MORETTI = {
     ['g:Fechar orçamento de plotagem do trimestre', 'henrique', ['bruno'], 1, 'Concluir', 'precisamos fechar a plotagem até sexta.', false],
     ['p1:cur', 'camila', ['pedro'], 20, 'Atualizar', 'pode atualizar o relatório da obra?', true],
   ],
+  // conversa por projeto: índice do projeto, mensagens que o Diretor ainda não leu, [autor, dias atrás, hora, texto]
+  chats: [
+    [0, 1, [
+      ['julia', 2, '09:12', 'Bom dia! Subi a revisão 03 da marcenaria da cozinha na pasta do projeto.'],
+      ['camila', 2, '09:40', 'Vi aqui. A altura da bancada do lavabo ainda está em 90 e o cliente pediu 95.'],
+      ['julia', 2, '09:44', 'Verdade, esqueci. Ajusto hoje e reenvio.'],
+      ['julia', 1, '16:05', '@Camila, o marceneiro confirmou 12 dias de prazo para a cozinha. Posso avisar o cliente?'],
+      ['camila', 1, '16:20', 'Pode avisar. Só deixa claro que o prazo depende da escolha da paleta.'],
+      ['julia', 0, '08:50', '@Henrique, a paleta da cozinha está esperando você desde segunda. É ela que destrava a marcenaria.'],
+    ]],
+    [2, 2, [
+      ['pedro', 5, '11:30', 'Montei as duas opções de fachada: A com brise de madeira e B com cobogó.'],
+      ['camila', 5, '11:52', 'A do cobogó ficou mais leve, mas o brise conversa melhor com o entorno.'],
+      ['pedro', 2, '14:10', 'O cliente ligou. Quer a opinião do escritório antes de escolher.'],
+      ['camila', 2, '14:25', '@Henrique, consegue olhar as duas fachadas hoje? O cliente está aguardando.'],
+      ['henrique', 1, '10:03', 'Vi as duas. Eu iria de brise, mas vamos mostrar as duas no dia 20.'],
+      ['pedro', 0, '09:05', 'Fechado. Preparo a apresentação com as duas lado a lado.'],
+      ['camila', 0, '09:18', '@Pedro, inclui a perspectiva da rua nas duas, por favor.'],
+    ]],
+    [4, 0, [
+      ['diego', 1, '15:10', 'A ART está pronta no sistema do CAU. Falta só a assinatura.'],
+      ['henrique', 1, '17:45', 'Assino amanhã cedo. Já conferiram o recuo lateral?'],
+      ['diego', 0, '08:30', 'Conferi: recuo de 1,50 m, dentro do que a prefeitura pede.'],
+    ]],
+    [7, 0, [
+      ['julia', 1, '10:20', 'Pranchas finais do executivo revisadas. Falta só a lista de materiais.'],
+      ['bruno', 1, '10:31', 'A entrega ao cliente continua para quinta, dia 16?'],
+      ['julia', 1, '10:33', 'Continua. Fecho a lista de materiais amanhã.'],
+      ['bruno', 0, '08:15', 'Perfeito. Me avisa quando subir a lista, que eu faço a última revisão.'],
+    ]],
+    [1, 0, [
+      ['pedro', 5, '13:20', 'Visita de obra de sexta: as esquadrias chegaram, mas duas vieram com a medida errada.'],
+      ['bruno', 5, '13:45', 'Anota no relatório e pede a troca ao fornecedor.'],
+      ['pedro', 2, '11:00', 'O fornecedor confirmou a troca das duas esquadrias. Entrega prevista para o dia 22.'],
+      ['bruno', 2, '11:12', 'Ótimo. A próxima visita fica marcada para o dia 22, então.'],
+      ['pedro', 1, '17:30', 'Mandei o relatório da visita para o cliente por e-mail.'],
+    ]],
+    [6, 0, [
+      ['marina', 5, '10:15', 'O projeto de ar-condicionado chegou com atraso. Estou compatibilizando com o forro.'],
+      ['bruno', 5, '10:40', 'Qual altura livre sobrou na recepção?'],
+      ['marina', 5, '10:52', '2,60 m. Cabe, mas a sanca precisa ser mais rasa.'],
+      ['bruno', 2, '09:00', 'Falei com o empreiteiro: ele precisa do executivo até sexta para liberar a recepção em dezembro.'],
+      ['marina', 2, '09:20', 'Fecho a compatibilização até quinta. Mandei a prancha 07 para você revisar.'],
+      ['bruno', 1, '14:35', 'Revisei a prancha 07. Só comentei dois pontos de elétrica.'],
+      ['marina', 1, '15:02', 'Ajustei os dois pontos e subi a revisão 02.'],
+    ]],
+  ],
 };
 const EXEMPLO = {
   id: 'exemplo', nome: 'Estúdio Exemplo', mono: 'EE', seed: 21,
@@ -1051,6 +1187,7 @@ const EXEMPLO = {
     ['Atualizar portfólio', 'Comercial', 'Caixa de entrada', [], null, '', 'sofia', null],
   ],
   cobrancas: [],
+  chats: [],
 };
 
 function buildOffice(cfg) {
@@ -1059,8 +1196,8 @@ function buildOffice(cfg) {
   const between = (a, b) => a + Math.floor(r() * (b - a + 1));
   const director = cfg.people.find(p => p.role === 'diretor');
   const projetistas = cfg.people.filter(p => p.role === 'projetista').map(p => p.id);
-  const o = { id: cfg.id, nome: cfg.nome, mono: cfg.mono, people: cfg.people, demo: cfg.demo, waitStatus: 'Aguardando ' + director.nome.split(' ')[0], projects: [], acts: [], comments: [], seq: 0 };
-  const addComment = c => o.comments.push({ id: 'c' + (++o.seq), kind: 'comentario', target: [], ...c });
+  const o = { id: cfg.id, nome: cfg.nome, mono: cfg.mono, people: cfg.people, demo: cfg.demo, waitStatus: 'Aguardando ' + director.nome.split(' ')[0], projects: [], acts: [], comments: [], seq: 0, chatSeen: {} };
+  const addComment = c => { const cm = { id: 'c' + (++o.seq), kind: 'comentario', target: [], ...c }; o.comments.push(cm); return cm; };
   const curIdx = {};
   let adhocCursor = 0;
 
@@ -1157,6 +1294,13 @@ function buildOffice(cfg) {
     const names = to.map(id => '@' + cfg.people.find(x => x.id === id).nome.split(' ')[0]).join(' ');
     addComment({ actId, author: from, date: addDays(TODAY, -days), text: `${names}, ${text}`, kind: 'cobranca', target: to, motivo, atendida });
   });
+
+  cfg.chats.forEach(([pi, unread, msgs]) => {
+    const pid = `${cfg.id}-p${pi}`;
+    const ids = msgs.map(([author, days, hora, text]) => addComment({ kind: 'mensagem', projId: pid, author, date: addDays(TODAY, -days), hora, text }).id);
+    const seenByDirector = unread < ids.length ? ids[ids.length - unread - 1] : '';
+    cfg.people.forEach(p => { o.chatSeen[[cfg.id, p.id, pid].join('|')] = p.id === director.id ? seenByDirector : ids.at(-1); });
+  });
   return o;
 }
 
@@ -1164,9 +1308,10 @@ function buildOffice(cfg) {
 const S = {
   offices: { moretti: buildOffice(MORETTI), exemplo: buildOffice(EXEMPLO) },
   officeId: 'moretti', userId: 'henrique', session: 'login', email: '',
-  ui: { opView: 'status', opStatus: 'Em andamento', fProj: '', fPessoa: '', fSemDono: false, projFilter: 'andamento', homeFilter: 'todas', show: {}, orderDraft: {}, back: [], lastTab: 'home' },
+  ui: { opView: 'status', opStatus: 'Em andamento', fProj: '', fPessoa: '', fSemDono: false, projFilter: 'andamento', homeFilter: 'todas', show: {}, orderDraft: {}, back: [], lastTab: 'home', chatSeen: {}, chatDraft: {} },
   sheet: null, toast: null, lastKey: '', suppressClick: 0,
 };
+Object.values(S.offices).forEach(o => Object.assign(S.ui.chatSeen, o.chatSeen));
 const O = () => S.offices[S.officeId];
 const STATUSES = () => ['Caixa de entrada', 'Em andamento', 'Pausa', 'Aguardando retorno', O().waitStatus, 'Concluído', 'Cancelado'];
 const statusIdx = s => STATUSES().indexOf(s);
@@ -1236,6 +1381,24 @@ function cobrancaTarget(ctx) {
 const pendingCobrancas = uid => O().comments.filter(c => c.kind === 'cobranca' && !c.atendida && c.target.includes(uid));
 const waitingDirector = () => O().acts.filter(a => a.status === O().waitStatus);
 const updateAuthor = p => p.executor[0] || p.coordenador[0] || null;
+/* Conversa do projeto: a mensagem é um comentário (kind 'mensagem') na página do projeto. */
+const msgStamp = m => m.date + ' ' + m.hora;
+const projMessages = pid => O().comments.filter(c => c.kind === 'mensagem' && c.projId === pid).sort((x, y) => msgStamp(x) < msgStamp(y) ? -1 : msgStamp(x) > msgStamp(y) ? 1 : 0);
+const lastMessage = pid => projMessages(pid).at(-1);
+const chatKey = pid => [S.officeId, S.userId, pid].join('|');
+const takesPart = p => p.coordenador.includes(S.userId) || p.executor.includes(S.userId) || projActs(p.id).some(a => a.responsavel.includes(S.userId));
+const canChat = p => isLead() || takesPart(p);
+function chatProjects() {
+  const stamp = p => { const m = lastMessage(p.id); return m ? msgStamp(m) : ''; };
+  return O().projects.filter(p => canChat(p) && (p.status === 'Em andamento' || lastMessage(p.id)))
+    .sort((x, y) => (stamp(x) < stamp(y) ? 1 : stamp(x) > stamp(y) ? -1 : 0) || (x.code < y.code ? 1 : -1));
+}
+function unreadCount(pid) {
+  const seen = S.ui.chatSeen[chatKey(pid)], list = projMessages(pid);
+  return list.slice(seen === undefined ? 0 : list.findIndex(m => m.id === seen) + 1).filter(m => m.author !== S.userId).length;
+}
+const unreadTotal = () => chatProjects().reduce((n, p) => n + unreadCount(p.id), 0);
+function markSeen(pid) { S.ui.chatSeen[chatKey(pid)] = lastMessage(pid)?.id ?? ''; }
 function homeNumbers() {
   const o = O();
   return { stalled: o.projects.filter(isStalled).length, late: o.acts.filter(isLate).length, loose: o.acts.filter(lacksOwnerOrDate).length };
@@ -1268,7 +1431,7 @@ const PRIO = {
   'Stand By': { cls: 'standby', label: 'Stand by', icon: 'pause', quiet: true },
 };
 const AV_TONES = [['#e3dfc8', '#57502c'], ['#eed9cb', '#7f4b33'], ['#dbe3d6', '#46593f'], ['#d9e0e0', '#3f5357'], ['#e7d8db', '#6b4650'], ['#efe0bf', '#7a5717'], ['#e3ddd3', '#5b5347'], ['#dfe2cc', '#535a2c']];
-const ROUTE_LABEL = { home: 'Início', operacao: 'Operação', projetos: 'Projetos', projeto: 'Projeto', atividade: 'Atividade', minhas: 'Minhas', estrategica: 'Estratégia' };
+const ROUTE_LABEL = { home: 'Início', operacao: 'Operação', projetos: 'Projetos', projeto: 'Projeto', atividade: 'Atividade', minhas: 'Minhas', estrategica: 'Estratégia', conversas: 'Conversas', conversa: 'Conversa' };
 const prazoLabelLong = d => { const x = utc(d); return `${WD_SHORT[x.getUTCDay()]}, ${x.getUTCDate()} ${MONTHS[x.getUTCMonth()]}`; };
 function prazoInfo(a) {
   if (!a.prazo) return { cls: 'none', text: 'Sem prazo' };
@@ -1323,6 +1486,7 @@ const ICONS = {
   inbox: '<path d="M4 13.5h4.5l1.5 2.5h4l1.5-2.5H20"/><path d="M6 5h12l2 8.5V19H4v-5.5z"/>',
   search: '<circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 5 5"/>',
   back: '<path d="M19.5 12H5"/><path d="M11 5.5 4.5 12l6.5 6.5"/>',
+  chat: '<path d="M20 11.5c0 4-3.6 7-8 7-1.1 0-2.2-.2-3.1-.6l-4.4 1.6 1.3-3.4C4.7 14.9 4 13.3 4 11.5c0-4 3.6-7 8-7s8 3 8 7z"/><path d="M8.5 10.25h7M8.5 13h4.25"/>',
 };
 /* Filled twins for the active navigation item (Material: filled icon when selected). */
 const ICONS_FILLED = {
@@ -1331,6 +1495,7 @@ const ICONS_FILLED = {
   plan: '<rect x="3.5" y="3.5" width="7" height="7.5" rx="1.6"/><rect x="12" y="3.5" width="8.5" height="7.5" rx="1.6"/><rect x="3.5" y="12.5" width="7" height="8" rx="1.6"/><rect x="12" y="12.5" width="8.5" height="8" rx="1.6"/>',
   chart: '<rect x="3.5" y="18.5" width="17" height="2" rx="1"/><path d="M4.5 17 9.4 11.4l3.1 2.8 6-6.7V17z"/><path d="M14.6 6.6h4.9v4.9z"/>',
   mine: '<rect x="3" y="4" width="5" height="5" rx="1.5"/><rect x="3" y="10.5" width="5" height="5" rx="1.5"/><circle cx="5.5" cy="18.5" r="2"/><rect x="10" y="5.6" width="10.5" height="1.9" rx=".95"/><rect x="10" y="12.05" width="10.5" height="1.9" rx=".95"/><rect x="10" y="17.55" width="10.5" height="1.9" rx=".95"/>',
+  chat: '<path fill-rule="evenodd" d="M12 3.25c-4.8 0-8.75 3.3-8.75 8.25 0 1.8.6 3.5 1.6 4.8l-1.2 3.1a.75.75 0 0 0 .97.96l4-1.45c1.1.4 2.3.6 3.38.6 4.8 0 8.75-3.3 8.75-8.25S16.8 3.25 12 3.25zM8.75 9.5h6.5a.75.75 0 0 1 0 1.5h-6.5a.75.75 0 0 1 0-1.5zm0 2.75H13a.75.75 0 0 1 0 1.5H8.75a.75.75 0 0 1 0-1.5z"/>',
 };
 const iconFill = (name, cls = '') => `<svg class="i ${cls}" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">${ICONS_FILLED[name]}</svg>`;
 const icon = (name, cls = '') => `<svg class="i ${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${ICONS[name]}</svg>`;
@@ -1725,12 +1890,80 @@ function viewProject(id) {
   const people = `<div class="people">${ppl('Coordenador', p.coordenador)}${ppl('Executor', p.executor)}</div>`;
   const etapa = `<section class="sec"><div class="sec-h"><h2>Etapa</h2>${ci >= 0 && ci < ETAPAS.length ? `<span class="aside num">${ci + 1} de ${ETAPAS.length}</span>` : ''}</div>${stepper(p)}</section>`;
   const update = `<section class="sec"><div class="sec-h"><h2>Atualização</h2></div>${updateNote(p, ua)}</section>`;
+  const chat = canChat(p) ? chatPeek(p) : '';
   const nextSec = `<section class="sec">${secHead('Próximas atividades', 'ordem do processo padrão')}<div class="group rows">${next.slice(0, 6).map(a => actRow(a, { meta: ['who', 'status'] })).join('') || emptyMini('Nenhuma atividade pendente.', 'checkCircle')}</div></section>`;
   const all = projActs(p.id);
   const groups = [...ETAPAS, ''].map(e => [e, all.filter(a => (a.etapa || '') === e).sort((x, y) => (x.ordem ?? 1e9) - (y.ordem ?? 1e9))]).filter(([, l]) => l.length);
   const allSec = `<section class="sec"><div class="sec-h"><h2>Todas as atividades</h2><span class="count">${all.length}</span></div>${groups.map(([e, l]) => `<details class="grp"${e === etapaOf(p) ? ' open' : ''}><summary>${icon('chevR')}<span>${esc(e || 'Sem etapa')}</span><span class="t-caption num">${(n => n ? `${n} de ${l.length} em aberto` : l.length === 1 ? 'Concluída' : 'Concluídas')(l.filter(isOpen).length)}</span></summary><div class="rows">${l.map(a => actRow(a, { meta: ['who', 'status'] })).join('')}</div></details>`).join('')}</section>`;
-  if (desk) return `${hero}<div class="proj-layout"><div class="proj-main">${update}${nextSec}${orderSection(p)}${allSec}</div><aside class="proj-side">${people}${etapa}</aside></div>`;
-  return `${hero}${people}${etapa}${update}${nextSec}${orderSection(p)}${allSec}`;
+  if (desk) return `${hero}<div class="proj-layout"><div class="proj-main">${update}${nextSec}${orderSection(p)}${allSec}</div><aside class="proj-side">${people}${chat}${etapa}</aside></div>`;
+  return `${hero}${people}${etapa}${update}${chat}${nextSec}${orderSection(p)}${allSec}`;
+}
+
+/* ============ screens: conversas ============ */
+const capitalize = t => t.charAt(0).toUpperCase() + t.slice(1);
+const msgAuthor = m => m.author === S.userId ? 'Você' : firstName(m.author);
+function chatWhen(m) {
+  const k = ago(m.date);
+  return k <= 0 ? m.hora : k === 1 ? 'Ontem' : k < 7 ? WD_SHORT[utc(m.date).getUTCDay()] : fmtDate(m.date);
+}
+function chatDay(date) {
+  const k = ago(date), d = utc(date);
+  return k <= 0 ? 'Hoje' : k === 1 ? 'Ontem' : `${capitalize(WEEKDAYS[d.getUTCDay()])}, ${d.getUTCDate()} de ${MONTHS_LONG[d.getUTCMonth()]}`;
+}
+const projTitle = p => `<span class="num">${esc(p.code)}</span> - ${esc(p.client)}`;
+function viewChats() {
+  const list = chatProjects();
+  const row = p => {
+    const m = lastMessage(p.id), n = unreadCount(p.id);
+    return `<a class="crow${n ? ' unread' : ''}" href="#/conversa/${p.id}"${n ? ` aria-label="${esc(`${p.code} - ${p.client}, ${plural(n, 'mensagem não lida', 'mensagens não lidas')}`)}"` : ''}>
+      <span class="crow-ico">${icon('plan')}</span>
+      <span class="crow-main"><span class="crow-top"><b class="crow-name">${projTitle(p)}</b>${m ? `<span class="crow-when num">${esc(chatWhen(m))}</span>` : ''}</span>
+      <span class="crow-bot"><span class="crow-p${m ? '' : ' none'}">${m ? `${esc(msgAuthor(m))}: ${esc(m.text)}` : 'Nenhuma mensagem ainda'}</span>${n ? `<span class="bad num">${n}</span>` : ''}</span></span></a>`;
+  };
+  return `${largeTitle('Conversas', 'Equipe interna · uma por projeto')}<div class="group chat-list">${list.map(row).join('') || emptyMini('Nenhum projeto com conversa.', 'chat')}</div>`;
+}
+function chatMsg(msgs, i) {
+  const m = msgs[i], prev = msgs[i - 1], next = msgs[i + 1], mine = m.author === S.userId;
+  const newDay = !prev || prev.date !== m.date, first = newDay || prev.author !== m.author;
+  const last = !next || next.date !== m.date || next.author !== m.author;
+  const bubble = `<div class="bubble"><span class="sr">${esc(msgAuthor(m))}: </span><span class="msg-text">${renderText(m.text)}</span><time class="msg-time num" datetime="${m.date}T${m.hora}">${m.hora}</time></div>`;
+  return `${newDay ? `<p class="chat-day"><span>${chatDay(m.date)}</span></p>` : ''}<div class="msg ${mine ? 'mine' : 'theirs'}${first ? ' first' : ''}${last ? ' last' : ''}" data-msg="${m.id}">${mine ? '' : `<span class="msg-av" aria-hidden="true">${first ? avatar(m.author, 'md') : ''}</span>`}<div class="msg-main">${!mine && first ? `<span class="msg-name" aria-hidden="true">${esc(firstName(m.author))}</span>` : ''}${bubble}</div></div>`;
+}
+function chatThread(pid) {
+  const msgs = projMessages(pid);
+  if (!msgs.length) return `<div class="chat-empty"><span class="ico">${icon('chat')}</span><h2>Comece a conversa</h2><p>Combine o próximo passo com a equipe. O cliente não vê esta conversa.</p></div>`;
+  return msgs.map((_, i) => chatMsg(msgs, i)).join('');
+}
+/* Sending adds one node to the log instead of rebuilding it, so a screen reader announces only the new message. */
+function appendMessage(thread, pid) {
+  const msgs = projMessages(pid), i = msgs.length - 1;
+  if (!i) return void (thread.innerHTML = chatThread(pid));
+  if (msgs[i - 1].author === msgs[i].author && msgs[i - 1].date === msgs[i].date) thread.querySelector(`[data-msg="${msgs[i - 1].id}"]`)?.classList.remove('last');
+  thread.insertAdjacentHTML('beforeend', chatMsg(msgs, i));
+}
+function viewChat(id) {
+  const p = proj(id);
+  if (!p || !canChat(p)) return notFound();
+  markSeen(p.id);
+  const draft = S.ui.chatDraft[chatKey(p.id)] || '';
+  return `<div class="chat" data-chat="${p.id}">
+    <header class="chat-head"><button class="icon-btn" data-action="back" aria-label="Voltar">${icon('back')}</button>
+      <div class="chat-title"><h1>${projTitle(p)}</h1><small>${esc(etapaOf(p) || p.status)}</small></div>
+      <a class="chat-proj" href="#/projeto/${p.id}" aria-label="Abrir o projeto ${esc(p.client)}">${icon('plan')}<span>Projeto</span></a></header>
+    <div class="chat-scroll"><div class="chat-thread" role="log" aria-label="Mensagens da conversa">${chatThread(p.id)}</div></div>
+    <form class="chat-composer${draft.trim() ? '' : ' is-empty'}" data-form="chat" data-p="${p.id}">
+      <div class="chat-row"><label class="sr" for="chat-in">Mensagem</label><textarea id="chat-in" class="chat-input" name="text" rows="1" placeholder="Mensagem para a equipe" autocomplete="off">${esc(draft)}</textarea>
+        <button class="chat-send" type="submit" aria-label="Enviar mensagem" aria-disabled="${!draft.trim()}">${icon('send')}</button></div>
+      <p class="chat-note">Só a equipe vê · fica nos comentários do projeto no Notion</p></form>
+  </div>`;
+}
+/* Project page: the last two messages and the way in. */
+function chatPeek(p) {
+  const last = projMessages(p.id).slice(-2), n = unreadCount(p.id);
+  const line = m => `<li class="peek-msg">${avatar(m.author, 'sm')}<p><b>${esc(msgAuthor(m))}</b><span class="sr">, </span><span class="peek-when num">${esc(chatWhen(m))}</span><span class="sr">: </span><span class="peek-text">${esc(m.text)}</span></p></li>`;
+  return `<section class="sec chat-peek"><div class="sec-h"><h2>Conversa</h2><span class="aside">Equipe interna</span></div>
+    <div class="card peek">${last.length ? `<ul>${last.map(line).join('')}</ul>` : '<p class="peek-none">Nenhuma mensagem ainda</p>'}
+      <a class="btn btn-block${n ? ' btn-primary' : ''}" href="#/conversa/${p.id}"${n ? ` aria-label="Abrir conversa, ${plural(n, 'mensagem não lida', 'mensagens não lidas')}"` : ''}>${icon('chat')}Abrir conversa${n ? `<span class="bad num">${n}</span>` : ''}</a></div></section>`;
 }
 
 /* ============ screens: atividade ============ */
@@ -1759,7 +1992,6 @@ function pageContent(a) {
     <div class="file"><span class="ext">PDF</span><span><b>${esc(slug)}_rev0${1 + Math.floor(r() * 4)}.pdf</b><small>${(1 + r() * 4).toFixed(1).replace('.', ',')} MB · anexado no Notion</small></span></div></section>`;
 }
 const renderText = t => esc(t).replace(/@([A-ZÀ-Ú][\wÀ-ú]+)/g, '<span class="mention">@$1</span>');
-const capitalize = t => t.charAt(0).toUpperCase() + t.slice(1);
 function ordemLabel(a) {
   const ordered = projActs(a.projeto).filter(x => x.ordem != null).sort((x, y) => x.ordem - y.ordem);
   return a.ordem != null ? `<span class="num">${ordered.indexOf(a) + 1}ª de ${ordered.length}</span>` : '<span class="muted">Sem ordem no processo</span>';
@@ -1929,12 +2161,13 @@ function viewStrategic() {
 
 /* ============ shell ============ */
 function tabsFor(role) {
-  const t = { home: { route: 'home', label: 'Início', icon: 'home' }, op: { route: 'operacao', label: 'Operação', icon: 'board' }, proj: { route: 'projetos', label: 'Projetos', icon: 'plan' } };
-  if (role === 'diretor') return [t.home, t.op, t.proj, { route: 'estrategica', label: 'Estratégia', icon: 'chart' }];
-  if (role === 'gerente') return [t.home, t.op, t.proj, { route: 'minhas', label: 'Minhas', icon: 'mine' }];
-  return [{ route: 'home', label: 'Minhas', icon: 'mine' }, t.op, t.proj];
+  const t = { home: { route: 'home', label: 'Início', icon: 'home' }, op: { route: 'operacao', label: 'Operação', icon: 'board' }, proj: { route: 'projetos', label: 'Projetos', icon: 'plan' }, chat: { route: 'conversas', label: 'Conversas', icon: 'chat', badge: unreadTotal() } };
+  if (role === 'diretor') return [t.home, t.op, t.proj, t.chat, { route: 'estrategica', label: 'Estratégia', icon: 'chart' }];
+  if (role === 'gerente') return [t.home, t.op, t.proj, t.chat, { route: 'minhas', label: 'Minhas', icon: 'mine' }];
+  return [{ route: 'home', label: 'Minhas', icon: 'mine' }, t.op, t.proj, t.chat];
 }
-const DETAIL = { projeto: true, atividade: true };
+const DETAIL = { projeto: true, atividade: true, conversa: true };
+const chatOf = r => { const p = r.name === 'conversa' && proj(r.id); return p && canChat(p) ? p : null; };
 function backLabel() {
   const prev = S.ui.back[S.ui.back.length - 1];
   if (!prev) return 'Voltar';
@@ -1949,9 +2182,10 @@ function backLabel() {
 const FAB_ROUTES = { home: true, operacao: true };
 function shell(r, body, { wide, title }) {
   const o = O(), u = me(), tabs = tabsFor(u.role);
-  const activeTab = DETAIL[r.name] ? S.ui.lastTab : (r.name === 'minhas' && u.role === 'projetista' ? 'home' : r.name);
+  const inChat = !!chatOf(r);
+  const activeTab = inChat ? 'conversas' : DETAIL[r.name] ? S.ui.lastTab : (r.name === 'minhas' && u.role === 'projetista' ? 'home' : r.name);
   if (!DETAIL[r.name]) S.ui.lastTab = activeTab;
-  const link = (t, cls) => `<a href="#/${t.route}" class="${cls}"${t.route === activeTab ? ' aria-current="page"' : ''}><span class="nav-ind">${icon(t.icon, 'off')}${iconFill(t.icon, 'on')}</span><span class="nav-l">${t.label}</span></a>`;
+  const link = (t, cls) => `<a href="#/${t.route}" class="${cls}"${t.route === activeTab ? ' aria-current="page"' : ''}><span class="nav-ind">${icon(t.icon, 'off')}${iconFill(t.icon, 'on')}${t.badge ? `<span class="nav-badge num" aria-hidden="true">${t.badge > 99 ? '99+' : t.badge}</span>` : ''}</span><span class="nav-l">${t.label}</span>${t.badge ? `<span class="sr">, ${plural(t.badge, 'não lida', 'não lidas')}</span>` : ''}</a>`;
   const meBtn = `<button class="me-btn" data-action="account-sheet" aria-label="Conta e Escritório" aria-haspopup="dialog">${avatar(u.id, 'md')}</button>`;
   /* Home: the Material search bar with the avatar (direction A). Inner screens: a small top app bar
      with back, the compact title once the page title scrolls away, and actions. Three grid columns,
@@ -1963,7 +2197,7 @@ function shell(r, body, { wide, title }) {
         : `<a class="brand-btn" href="#/home" aria-label="${esc(o.nome)}, início"><span class="mono mono-sm">${o.mono}</span></a>`}</div><div class="topbar-title" aria-hidden="true">${esc(title || '')}</div><div class="topbar-r"><button class="icon-btn" data-action="search-sheet" aria-label="Buscar projeto ou atividade" aria-haspopup="dialog">${icon('search')}</button>${meBtn}</div></div></header>`;
   const somethingToChase = () => O().acts.some(isLate) || O().projects.some(isStalled);
   const fab = canCobrar() && FAB_ROUTES[r.name] && !(r.name === 'home' && u.role === 'gerente') && somethingToChase() ? `<button class="fab" data-action="cobrar-pick" aria-haspopup="dialog">${icon('bell')}<span>Cobrar</span></button>` : '';
-  return `<div class="app${fab ? ' has-fab' : ''}">
+  return `<div class="app${fab ? ' has-fab' : ''}${inChat ? ' app--chat' : ''}">
     <aside class="sidebar">
       <button class="side-brand" data-action="account-sheet" aria-haspopup="dialog"><span class="mono">${o.mono}</span><span><b>${esc(o.nome)}</b><small>Gestão à vista</small></span>${icon('chevD')}</button>
       ${canCobrar() && somethingToChase() ? `<button class="side-fab" data-action="cobrar-pick" aria-haspopup="dialog">${icon('bell')}Cobrar</button>` : ''}
@@ -1980,7 +2214,7 @@ function shell(r, body, { wide, title }) {
       <main class="main${wide ? ' main--wide' : ''}" id="main"><div class="page">${body}</div></main>
     </div>
     ${fab}
-    <nav class="tabbar" aria-label="Principal" style="--n:${tabs.length}">${tabs.map(t => link(t, 'tab')).join('')}</nav>
+    <nav class="tabbar${tabs.length > 4 ? ' tabbar--dense' : ''}" aria-label="Principal" style="--n:${tabs.length}">${tabs.map(t => link(t, 'tab')).join('')}</nav>
   </div>`;
 }
 
@@ -2022,6 +2256,8 @@ function render() {
     case 'projetos': body = viewProjects(); wide = true; title = 'Projetos'; break;
     case 'projeto': body = viewProject(r.id); title = proj(r.id)?.client || ''; break;
     case 'atividade': body = viewActivity(r.id); title = act(r.id)?.nome || ''; break;
+    case 'conversas': body = viewChats(); title = 'Conversas'; break;
+    case 'conversa': body = viewChat(r.id); title = proj(r.id)?.client || ''; break;
     case 'minhas': body = viewMine(); title = 'Suas atividades'; break;
     case 'estrategica': body = viewStrategic(); wide = true; title = 'Visão estratégica'; break;
     default: body = role === 'diretor' ? viewHomeDirector() : role === 'gerente' ? viewHomeManager() : viewMine(); title = role === 'projetista' ? 'Minhas' : 'Início';
@@ -2031,9 +2267,12 @@ function render() {
   const keep = {
     board: document.querySelector('.board')?.scrollLeft || 0,
     tabs: document.querySelector('.tabs-scroll')?.scrollLeft,
+    chat: document.querySelector('.chat-scroll')?.scrollTop,
+    caret: document.activeElement?.matches?.('.chat-input') ? [document.activeElement.selectionStart, document.activeElement.selectionEnd] : null,
   };
   app.innerHTML = shell(r, body, { wide, title });
   document.body.classList.toggle('has-subbar', !!app.querySelector('.subbar') && !isDesktop());
+  document.body.classList.toggle('in-chat', !!app.querySelector('.chat'));
   if (changed) {
     window.scrollTo(0, 0);
     app.querySelector('.page')?.classList.add('page-anim');
@@ -2043,6 +2282,15 @@ function render() {
     const t = app.querySelector('.tabs-scroll'); if (t && keep.tabs != null) t.scrollLeft = keep.tabs;
   }
   afterRender(changed);
+  const cs = app.querySelector('.chat-scroll');
+  if (cs) {
+    app.querySelectorAll('.chat-input').forEach(growInput);
+    syncChatViewport();
+    cs.scrollTop = changed || keep.chat == null ? cs.scrollHeight : keep.chat;
+    const input = app.querySelector('.chat-input');
+    if (!changed && keep.caret) { input.focus({ preventScroll: true }); input.setSelectionRange(...keep.caret); }
+    else if (changed && matchMedia('(hover:hover) and (pointer:fine)').matches) input.focus({ preventScroll: true });
+  }
   const lit = app.querySelector('.wi.flash'), box = lit?.getBoundingClientRect();
   if (box && (box.top < 0 || box.bottom > innerHeight - 160)) lit.scrollIntoView({ block: 'center', behavior: reduceMotion() ? 'auto' : 'smooth' });
 }
@@ -2108,6 +2356,21 @@ function afterRender(changed) {
   document.querySelectorAll('.order').forEach(Reorder.bind);
   syncChrome();
 }
+/* Conversa: the screen is pinned to the visual viewport, so the composer rides above the iOS keyboard
+   (the layout viewport does not shrink there) and the thread stays at the last message while it opens. */
+const growInput = ta => { ta.style.height = 'auto'; ta.style.height = Math.min(ta.scrollHeight, 136) + 'px'; };
+let chatStick = true;
+function syncChatViewport() {
+  const el = document.querySelector('.chat'), vv = window.visualViewport;
+  if (!el || !vv || vv.scale > 1.01) return;
+  el.style.setProperty('--chat-h', vv.height + 'px');
+  el.style.setProperty('--chat-top', vv.offsetTop + 'px');
+  el.classList.toggle('kb', vv.height < innerHeight - 120);
+  if (chatStick) { const sc = el.querySelector('.chat-scroll'); sc.scrollTop = sc.scrollHeight; }
+}
+window.visualViewport?.addEventListener('resize', syncChatViewport);
+window.visualViewport?.addEventListener('scroll', syncChatViewport);
+document.addEventListener('scroll', e => { const t = e.target; if (t.classList?.contains('chat-scroll')) chatStick = t.scrollHeight - t.scrollTop - t.clientHeight < 80; }, true);
 matchMedia('(min-width:1024px)').addEventListener('change', () => { if (S.session === 'app') render(); });
 let resizeT = 0;
 addEventListener('resize', () => { clearTimeout(resizeT); resizeT = setTimeout(() => { if (routeOf(location.hash).name === 'estrategica') render(); }, 150); });
@@ -2351,6 +2614,13 @@ function addComment(c) {
   o.comments.push(cm);
   return cm;
 }
+function sendMessage(pid, text) {
+  const last = lastMessage(pid), t = new Date();
+  const now = String(t.getHours()).padStart(2, '0') + ':' + String(t.getMinutes()).padStart(2, '0');
+  const m = addComment({ kind: 'mensagem', projId: pid, hora: last && last.date === TODAY && last.hora > now ? last.hora : now, text });
+  markSeen(pid);
+  return m;
+}
 function orderIdsFor(pid) {
   const base = [...pendingOrdered(pid).slice(0, 4), ...unordered(pid)].map(a => a.id);
   const draft = (S.ui.orderDraft[pid] || []).filter(i => base.includes(i));
@@ -2376,7 +2646,7 @@ const ACTIONS = {
     const prev = S.ui.back.pop();
     if (prev && prev !== location.hash) { S.skipHistory = true; location.hash = prev; return; }
     const r = routeOf(location.hash), a = r.name === 'atividade' && act(r.id);
-    go(a && a.projeto ? `#/projeto/${a.projeto}` : r.name === 'projeto' ? '#/projetos' : '#/operacao');
+    go(a && a.projeto ? `#/projeto/${a.projeto}` : r.name === 'projeto' ? '#/projetos' : r.name === 'conversa' ? '#/conversas' : '#/operacao');
   },
   'pulse': d => {
     Object.assign(S.ui, { fProj: '', fPessoa: '', fSemDono: false, spy: null });
@@ -2459,6 +2729,17 @@ const FORMS = {
     attendCobrancas(f.dataset.act, S.userId);
     render(); toast('Comentário enviado ao Notion', null, { icon: 'check' });
   },
+  chat: (fd, f) => {
+    const ta = f.querySelector('textarea'), text = String(fd.get('text') || '').trim();
+    if (!text) return ta.focus();
+    sendMessage(f.dataset.p, text);
+    ta.value = ''; delete S.ui.chatDraft[chatKey(f.dataset.p)];
+    growInput(ta); syncSend(f);
+    const sc = f.closest('.chat').querySelector('.chat-scroll');
+    appendMessage(sc.querySelector('.chat-thread'), f.dataset.p);
+    sc.scrollTop = sc.scrollHeight; chatStick = true;
+    ta.focus({ preventScroll: true });
+  },
   'dir-reply': (fd, f, submitter) => {
     const text = String(fd.get('text') || '').trim(); if (!text) return f.querySelector('textarea')?.focus();
     const a = act(f.dataset.act);
@@ -2497,7 +2778,19 @@ document.addEventListener('click', e => {
   if (t.dataset.action !== 'check') e.preventDefault();
   fn(t.dataset, t, e);
 });
+const syncSend = f => {
+  const empty = !f.querySelector('textarea').value.trim();
+  f.classList.toggle('is-empty', empty);
+  f.querySelector('.chat-send').setAttribute('aria-disabled', String(empty));
+};
 document.addEventListener('input', e => {
+  if (e.target.matches?.('.chat-input')) {
+    const ta = e.target;
+    growInput(ta); syncSend(ta.form);
+    S.ui.chatDraft[chatKey(ta.form.dataset.p)] = ta.value;
+    if (chatStick) syncChatViewport();
+    return;
+  }
   if (!e.target.matches?.('[data-search]') || S.sheet?.type !== 'search') return;
   S.sheet.q = e.target.value;
   sheetRoot().querySelector('.search-results').innerHTML = searchResults(S.sheet.q);
@@ -2507,7 +2800,12 @@ document.addEventListener('submit', e => {
   e.preventDefault();
   FORMS[f.dataset.form](new FormData(f), f, e.submitter);
 });
+document.addEventListener('mousedown', e => { if (e.target.closest('.chat-send')) e.preventDefault(); });
 document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey && !e.isComposing && e.target.matches?.('.chat-input') && matchMedia('(hover:hover) and (pointer:fine)').matches) {
+    e.preventDefault();
+    e.target.form.requestSubmit();
+  }
   if (e.key === 'Escape' && S.sheet) closeSheet();
   if (e.key === 'Tab' && S.sheet) {
     const f = [...sheetRoot().querySelectorAll('button:not([disabled]), input, textarea, [href]')].filter(el => el.offsetParent !== null);
@@ -2809,7 +3107,7 @@ addEventListener('scroll', hideTip, { passive: true });
    the wave shows) never gets a wave, so scrolling a list never flashes the cards under it.
    Mouse and pen get the wave at once. Off with reduced motion; the CSS state layer still marks the press. */
 const Ripple = (() => {
-  const SEL = '.btn,.icon-btn,.tab,.side-nav a,.opt,.wi,a.wg-head,.row,.pcard,.office,.pulse-cell,.strat-entry,.quiet-link,.fab,.side-fab,.searchbar,.side-search,.seg button,.tab-btn,.dchip,.fchip,.fchip-clear,.filter-btn,button.pill,.cobrar-btn,.cal-day,.choice,.demo-switch,.side-me,.side-brand,.me-btn,.back-link,.link-out,.ac[data-press],details.grp summary';
+  const SEL = '.btn,.icon-btn,.tab,.side-nav a,.opt,.wi,a.wg-head,.row,.pcard,.office,.pulse-cell,.strat-entry,.quiet-link,.fab,.side-fab,.searchbar,.side-search,.seg button,.tab-btn,.dchip,.fchip,.fchip-clear,.filter-btn,button.pill,.cobrar-btn,.cal-day,.choice,.demo-switch,.side-me,.side-brand,.me-btn,.back-link,.link-out,.crow,.chat-send,.chat-proj,.ac[data-press],details.grp summary';
   let pend = null, live = null;
   function spawn(host, x, y, quick) {
     const r = host.getBoundingClientRect();
