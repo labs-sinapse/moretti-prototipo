@@ -17,31 +17,33 @@
    The legacy aliases below (--ink, --olive…) point at roles so every component reads one scheme. */
 :root{
   --md-primary:#686039; --md-on-primary:#ffffff;
-  --md-primary-container:#ebe2bd; --md-on-primary-container:#37300e;
-  --md-secondary:#635e4e; --md-secondary-container:#e9e2cd; --md-on-secondary-container:#1e1c0f;
+  --md-primary-container:#dfd6c8; --md-on-primary-container:#443e20;
+  --md-secondary:#635e4e; --md-secondary-container:#dfd6c8; --md-on-secondary-container:#443e20;
   --md-tertiary:#526257; --md-tertiary-container:#d6e7d8; --md-on-tertiary-container:#25342a;
-  --md-error:#a8432c; --md-error-container:#fbdcd2; --md-on-error-container:#5f1d0e;
-  --md-warn:#86601a; --md-warn-container:#f3e4c2;
-  --md-surface:#fbf8ef; --md-surface-dim:#ddd8c9;
-  --md-surface-container-lowest:#ffffff; --md-surface-container-low:#f6f1e4; --md-surface-container:#f1ebdc;
-  --md-surface-container-high:#ebe5d5; --md-surface-container-highest:#e5dfce;
-  --md-on-surface:#1d1c15; --md-on-surface-variant:#4b4738; --md-outline:#7c7766; --md-outline-variant:#cdc6b2;
-  --md-inverse-surface:#333029; --md-inverse-on-surface:#f6f0e5; --md-inverse-primary:#d2c797;
+  --md-error:#915050; --md-error-container:#efdcdb; --md-on-error-container:#682b2b;
+  --md-warn:#7f4343; --md-warn-container:#f1e2e0;
+  --md-surface:#ebe9e5; --md-surface-dim:#d6d2ca;
+  --md-surface-container-lowest:#f8f7f4; --md-surface-container-low:#f2f0ec; --md-surface-container:#e3ded5;
+  --md-surface-container-high:#dfd6c8; --md-surface-container-highest:#d3c9b8;
+  --md-on-surface:#232016; --md-on-surface-variant:#4f4a33; --md-outline:#827c66; --md-outline-variant:#c7bba7;
+  --md-inverse-surface:#333029; --md-inverse-on-surface:#f6f0e5; --md-inverse-primary:#dfd6c8;
   --md-scrim:rgba(29,28,21,.36);
-  --md-seal:#9b9574; --md-seal-hot:#b9533b; --md-hairline:rgba(75,71,56,.16);
+  --md-seal:#686039; --md-seal-hot:#915050; --md-hairline:rgba(68,62,32,.14);
+  /* project box on the Diretor home: brand greige, activities sit on it as light pills */
+  --md-project:#c7bba7; --md-on-project:#443e20; --md-on-project-variant:#4f4a33;
 
   --bg:var(--md-surface); --paper:var(--md-surface-container-lowest); --surface:var(--md-surface-container-low);
   --sunken:var(--md-surface-container-high); --sunken-2:var(--md-surface-container-highest);
   --line:var(--md-hairline); --line-strong:var(--md-outline-variant);
-  --ink:var(--md-on-surface); --ink-2:var(--md-on-surface-variant); --ink-3:#6a6656; --ink-4:#a29c88;
-  --olive-900:var(--md-on-primary-container); --olive:var(--md-primary); --olive-600:#80774e; --olive-300:#cdc6a0;
+  --ink:var(--md-on-surface); --ink-2:var(--md-on-surface-variant); --ink-3:#625c48; --ink-4:#a39d88;
+  --olive-900:var(--md-on-primary-container); --olive:var(--md-primary); --olive-600:#80774e; --olive-300:#b8b39f;
   --olive-200:var(--md-primary-container); --olive-100:var(--md-secondary-container); --olive-50:var(--md-surface-container);
   --on-olive:var(--md-on-primary);
   --late:var(--md-error); --late-bg:var(--md-error-container); --late-dot:var(--md-seal-hot);
-  --warn:var(--md-warn); --warn-bg:var(--md-warn-container); --warn-dot:#b98a2e;
+  --warn:var(--md-warn); --warn-bg:var(--md-warn-container); --warn-dot:var(--md-warn); --stall-dot:#c59595;
   --done:var(--md-tertiary); --done-bg:var(--md-tertiary-container); --done-dot:#6f8c68;
   --slate-dot:#7d8d89; --stone-dot:#aaa293;
-  --chart-a:#686039; --chart-late:#cf8a68; --chart-soft:#b6ac7e; --chart-strong:#4e4722; --chart-wash:rgba(104,96,57,.1);
+  --chart-a:#686039; --chart-late:#915050; --chart-soft:#b8b39f; --chart-strong:#443e20; --chart-wash:rgba(104,96,57,.1);
 
   /* shape scale (M3): 8, 12, 16, 28, full */
   --r-sm:8px; --r-md:12px; --r-lg:16px; --r-xl:28px; --r-full:9999px;
@@ -60,7 +62,8 @@
 [data-office=exemplo]{
   --md-primary:#2f4b59; --md-primary-container:#cbe3f2; --md-on-primary-container:#0d2a37;
   --md-secondary:#566065; --md-secondary-container:#dae4ea; --md-on-secondary-container:#141d22;
-  --md-surface:#f7f9fa; --md-surface-dim:#d6dbde;
+  --md-surface:#f7f9fa; --md-surface-dim:#d6dbde; --md-surface-container-lowest:#ffffff;
+  --md-project:#d3dde3; --md-on-project:#0d2a37; --md-on-project-variant:#3f484d;
   --md-surface-container-low:#f0f3f5; --md-surface-container:#eaeef1; --md-surface-container-high:#e4e9ec; --md-surface-container-highest:#dee3e7;
   --md-on-surface:#181c1e; --md-on-surface-variant:#3f484d; --md-outline:#6f787e; --md-outline-variant:#bfc8ce;
   --md-inverse-surface:#2d3133; --md-inverse-on-surface:#eef1f4; --md-inverse-primary:#adcbdc;
@@ -146,7 +149,7 @@ button.pill:active{background:var(--md-surface-container-high)}
 .tag .dot{width:6px;height:6px}
 .tag .ldot{width:6px;height:6px;border-radius:50%;background:var(--late-dot)}
 .tag-late{background:var(--late-bg);color:var(--late)} .tag-late .dot{--c:var(--late-dot)}
-.tag-warn{background:var(--warn-bg);color:var(--warn)} .tag-warn .dot{--c:var(--warn-dot)}
+.tag-warn{background:var(--warn-bg);color:var(--warn)} .tag-warn .dot{--c:var(--stall-dot)}
 .tag-done{background:var(--done-bg);color:var(--done)}
 
 .prio{display:inline-grid;place-items:center;width:22px;height:22px;flex:none}
@@ -328,10 +331,18 @@ a.sh-name::before{content:"";position:absolute;inset:-12px -8px}
 .chip::before{content:"";position:absolute;inset:-6px 0}
 .chip .i{width:18px;height:18px;margin-left:-6px}
 .chip[aria-pressed=true]{background:var(--md-secondary-container);color:var(--md-on-secondary-container);box-shadow:none}
-.wgroups{display:flex;flex-direction:column}
+.wgroups{display:flex;flex-direction:column;gap:12px;margin-top:16px}
+.wg{padding:6px;border-radius:20px;background:var(--md-project)}
+.wg-head{display:flex;align-items:center;gap:8px;padding:10px 8px 10px 12px;border-radius:14px}
+.wg-head .chev{width:20px;height:20px;color:var(--md-on-project-variant);flex:none}
+.wg-ht{flex:1;min-width:0}
+.wg-name{display:block;font-size:13.5px;line-height:18px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--md-on-project);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wg-sub{display:block;margin-top:1px;font-size:12.5px;line-height:16px;color:var(--md-on-project-variant)}
+a.wg-head:active{background:rgba(68,62,32,.08)}
+@media (hover:hover){a.wg-head:hover{background:rgba(68,62,32,.06)}}
+.wg-list{display:flex;flex-direction:column;gap:6px}
 .wg-code{font-variant-numeric:tabular-nums}
-.wi{display:flex;align-items:center;gap:12px;padding:10px 12px 10px 16px;min-height:60px;background:var(--paper);transition:background var(--d-1)}
-.wi+.wi::before{content:"";position:absolute;top:0;left:60px;right:0;height:1px;background:var(--line);transform:scaleY(.5);transform-origin:top}
+.wi{display:flex;align-items:center;gap:12px;padding:10px 12px;min-height:60px;border-radius:14px;background:var(--paper);transition:background var(--d-1)}
 .wi:active{background:var(--md-surface-container-low)}
 @media (hover:hover){.wi:hover{background:var(--md-surface-container-low)}}
 .wi-main{flex:1;min-width:0}
@@ -365,7 +376,6 @@ a.sh-name::before{content:"";position:absolute;inset:-12px -8px}
 .quiet-link{display:flex;align-items:center;gap:12px;min-height:52px;padding:0 12px 0 16px;font-size:15.5px;background:var(--paper);transition:background var(--d-1)}
 .quiet-link:active{background:var(--md-surface-container-low)}
 .quiet-link .lbl{flex:1;min-width:0}
-.quiet-link .bad{background:var(--warn-dot)}
 .strat{margin-top:4px}
 
 /* ───────── operação ───────── */
@@ -427,8 +437,7 @@ a.sh-name::before{content:"";position:absolute;inset:-12px -8px}
 .pcard:active{background:var(--md-surface-container-low)}
 @media (hover:hover){.pcard:hover{background:var(--md-surface-container-low)}}
 .pcard-top{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:28px}
-.pcard-code{font-size:12px;line-height:16px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;color:var(--md-primary);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.pcard h3{font-size:18px;line-height:24px;font-weight:700;margin-top:2px}
+.pcard h3{font-size:18px;line-height:24px;font-weight:700;min-width:0}
 .pcard .place{font-size:13px;color:var(--ink-3);margin-top:1px}
 .steps-bar{display:grid;grid-template-columns:repeat(8,1fr);gap:3px;margin-top:14px}
 .steps-bar i{height:4px;border-radius:2px;background:var(--md-surface-container-highest)}
@@ -847,13 +856,13 @@ body.dragging,body.dragging *{cursor:grabbing!important;-webkit-user-select:none
   .auth-side .auth-brand{display:none}
   .auth-box{padding:0}
 
-  .sheet{left:50%;right:auto;top:50%;bottom:auto;width:min(520px,calc(100vw - 48px));max-height:min(720px,calc(100dvh - 64px));padding:0;border-radius:var(--r-xl);background:var(--md-surface-container-high);box-shadow:var(--e-3);transform:translate(-50%,-48%) scale(.98);opacity:0;transition:transform var(--d-3) var(--ease-out),opacity var(--d-2)}
+  .sheet{left:50%;right:auto;top:50%;bottom:auto;width:min(520px,calc(100vw - 48px));max-height:min(720px,calc(100dvh - 64px));padding:0;border-radius:var(--r-xl);background:var(--md-surface-container-low);box-shadow:var(--e-3);transform:translate(-50%,-48%) scale(.98);opacity:0;transition:transform var(--d-3) var(--ease-out),opacity var(--d-2)}
   .sheet-root.open .sheet{transform:translate(-50%,-50%);opacity:1}
   .sheet-root.closing .sheet{transition:transform var(--d-2) var(--ease-in),opacity var(--d-2)}
   .grab{display:none}
   .sheet-head{padding:24px 16px 4px 24px;touch-action:auto}
   .sheet-body{padding:8px 16px 20px}
-  .sheet-foot{padding:12px 24px 20px;background:var(--md-surface-container-high)}
+  .sheet-foot{padding:12px 24px 20px;background:var(--md-surface-container-low)}
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -1521,9 +1530,9 @@ function viewHomeDirector() {
   const group = k => {
     const p = k !== '_g' && proj(k);
     const head = p
-      ? secHead(`${esc(p.client)}`, `<span class="num wg-code">${esc(p.code)}</span>`, { href: `#/projeto/${p.id}` })
-      : secHead('Gestão', '<span class="wg-code">sem projeto</span>');
-    return `<section class="wg">${head.replace('class="sh-name"', 'class="sh-name wg-name"')}<div class="group">${groups.get(k).map(item).join('')}</div></section>`;
+      ? `<a class="wg-head" href="#/projeto/${p.id}"><span class="wg-ht"><span class="wg-name"><span class="num wg-code">${esc(p.code)}</span> - ${esc(p.client)}</span><span class="wg-sub">${esc(etapaOf(p) || p.status)}</span></span>${icon('chevR', 'chev')}</a>`
+      : `<div class="wg-head"><span class="wg-ht"><span class="wg-name">Gestão</span><span class="wg-sub wg-code">sem projeto</span></span></div>`;
+    return `<section class="wg">${head}<div class="wg-list">${groups.get(k).map(item).join('')}</div></section>`;
   };
   const chips = `<div class="chips" role="group" aria-label="Mostrar">${HOME_FILTERS.map(([k, l]) => `<button class="chip" data-action="home-filter" data-k="${k}" aria-pressed="${f === k}">${f === k ? icon('check') : ''}${l}</button>`).join('')}</div>`;
   const focal = all.length
@@ -1535,7 +1544,7 @@ function viewHomeDirector() {
 
 function stalledRow(p) {
   const d = lastMoveAgo(p);
-  return `<div class="row">${seal(`${d}d`, d > 7, `Parado há ${d} dias`)}<div class="row-main"><a class="row-t stretch" href="#/projeto/${p.id}"><b>${esc(p.client)}</b></a><p class="row-m"><span class="meta-in"><span class="pctx"><span class="code num">${esc(p.code)}</span>${esc(etapaOf(p) || '')}</span><span>parado há ${d} dias</span></span></p></div>
+  return `<div class="row">${seal(`${d}d`, d > 7, `Parado há ${d} dias`)}<div class="row-main"><a class="row-t stretch" href="#/projeto/${p.id}"><b><span class="num">${esc(p.code)}</span> - ${esc(p.client)}</b></a><p class="row-m"><span class="meta-in"><span>${esc(etapaOf(p) || '')}</span><span>parado há ${d} dias</span></span></p></div>
     <div class="row-end">${canCobrar() ? `<button class="cobrar-btn" data-action="cobrar-projeto" data-p="${p.id}">Cobrar</button>` : icon('chevR', 'chev')}</div></div>`;
 }
 function viewHomeManager() {
@@ -1645,8 +1654,8 @@ function viewProjects() {
     const ua = updateAge(p), lc = lateCount(p), ci = etapaIndex(p);
     const flag = isStalled(p) ? `<span class="tag tag-warn"><i class="dot"></i>Parado há ${lastMoveAgo(p)} dias</span>` : p.status !== 'Em andamento' ? `<span class="tag">${esc(p.status)}</span>` : '';
     return `<a class="pcard card" href="#/projeto/${p.id}">
-      <div class="pcard-top"><span class="pcard-code"><span class="num">${esc(p.code)}</span> · ${esc(etapaOf(p) || p.status)}</span>${flag}</div>
-      <h3>${esc(p.client)}</h3><p class="place">${esc(p.place)}</p>
+      <div class="pcard-top"><h3><span class="num">${esc(p.code)}</span> - ${esc(p.client)}</h3>${flag}</div>
+      <p class="place">${esc(p.place)}</p>
       ${stepsBar(ci)}
       <div class="pcard-etapa"><span>${esc(etapaOf(p) || p.status)}</span><span class="muted num">${ci >= 0 && ci < ETAPAS.length ? `${ci + 1} de ${ETAPAS.length}` : ''}</span></div>
       <div class="pcard-foot"><span class="${ua.stale ? 'flag' : ''}">${ua.label}</span>${lc && p.status === 'Em andamento' ? `<span class="flag"><i class="ldot" aria-hidden="true"></i>${plural(lc, 'atividade atrasada', 'atividades atrasadas')}</span>` : ''}</div>
@@ -1707,7 +1716,7 @@ function viewProject(id) {
     lc && p.status === 'Em andamento' ? `<span class="tag"><i class="ldot" aria-hidden="true"></i>${plural(lc, 'atividade atrasada', 'atividades atrasadas')}</span>` : '',
   ].join('');
   const ppl = (label, ids) => `<div class="person">${avatar(ids[0] || null, 'md')}<div class="person-txt"><small>${label}</small><span class="person-name${ids.length ? '' : ' unset'}">${ids.length ? esc(ids.map(i => person(i)?.nome || i).join(', ')) : 'Não definido'}</span></div></div>`;
-  const hero = `${backLink()}<header class="hero"><p class="t-overline"><span class="num">${esc(p.code)}</span> · ${esc(p.status)}</p><h1 class="t-display">${esc(p.client)}</h1><p class="place">${esc(p.place)}</p>${flags ? `<div class="hero-flags">${flags}</div>` : ''}<span class="title-sentinel" aria-hidden="true"></span></header>`;
+  const hero = `${backLink()}<header class="hero"><p class="t-overline">${esc(p.status)}</p><h1 class="t-display"><span class="num">${esc(p.code)}</span> - ${esc(p.client)}</h1><p class="place">${esc(p.place)}</p>${flags ? `<div class="hero-flags">${flags}</div>` : ''}<span class="title-sentinel" aria-hidden="true"></span></header>`;
   const people = `<div class="people">${ppl('Coordenador', p.coordenador)}${ppl('Executor', p.executor)}</div>`;
   const etapa = `<section class="sec"><div class="sec-h"><h2>Etapa</h2>${ci >= 0 && ci < ETAPAS.length ? `<span class="aside num">${ci + 1} de ${ETAPAS.length}</span>` : ''}</div>${stepper(p)}</section>`;
   const update = `<section class="sec"><div class="sec-h"><h2>Atualização</h2></div>${updateNote(p, ua)}</section>`;
@@ -1907,7 +1916,7 @@ function viewStrategic() {
     <div class="charts">
       ${frame('Projetos em andamento por etapa', `Mês a mês, de maio a outubro. Hoje: ${plural(active.length, 'projeto', 'projetos')} em andamento.`, smallMultiples(ETAPAS.map((e, i) => ({ label: e, values: hist[i] }))))}
       ${frame('Tempo médio por etapa', 'Dias que um projeto passa, em média, em cada etapa.', hBars([['Onboarding', 6], ['Levantamento Técnico', 9], ['Anteprojeto', 24], ['Pré Executivo', 14], ['Projeto Legal', 41], ['Projeto de Interiores', 19], ['Projeto Executivo', 33], ['Execução / Acompanhamento de Obra', 96]].map(([label, value]) => ({ label, value })), W))}
-      ${frame('Prazos cumpridos', 'Atividades concluídas por mês, no prazo ou depois dele. Outubro vai até hoje.', stackedCols({ cats: MONTHS_6, W, series: [{ name: 'No prazo', color: 'var(--chart-a)', values: [18, 22, 19, 25, 21, 9] }, { name: 'Com atraso', color: 'var(--chart-late)', values: [9, 7, 10, 6, 8, 3] }] }) + legend([['var(--chart-a)', 'Concluídas no prazo'], ['var(--chart-late)', 'Concluídas com atraso']]))}
+      ${frame('Prazos cumpridos', 'Atividades concluídas por mês, no prazo ou depois dele. Outubro vai até hoje.', stackedCols({ cats: MONTHS_6, W, series: [{ name: 'No prazo', color: 'var(--chart-strong)', values: [18, 22, 19, 25, 21, 9] }, { name: 'Com atraso', color: 'var(--chart-late)', values: [9, 7, 10, 6, 8, 3] }] }) + legend([['var(--chart-strong)', 'Concluídas no prazo'], ['var(--chart-late)', 'Concluídas com atraso']]))}
       ${frame('Cobranças enviadas e atendidas', 'Atendida é a cobrança seguida de resposta, novo status ou novo prazo.', groupedCols({ cats: MONTHS_6, W, series: [{ name: 'Enviadas', color: 'var(--chart-soft)', values: [12, 15, 11, 9, 8, 5] }, { name: 'Atendidas', color: 'var(--chart-strong)', values: [8, 11, 9, 8, 7, 3] }] }) + legend([['var(--chart-soft)', 'Enviadas'], ['var(--chart-strong)', 'Atendidas']]))}
       ${frame('Projetos parados', `Projetos em andamento sem movimentação há mais de 7 dias, semana a semana. Hoje: ${stalledNow}.`, lineChart({ cats: weeks, values: parados, W: chartWidth(true), H: isDesktop() ? 210 : 190 }), 'wide')}
     </div>`;
