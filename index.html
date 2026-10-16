@@ -268,7 +268,7 @@ a.sh-name::before{content:"";position:absolute;inset:-12px -8px}
 .cw-in{min-height:0}
 .cw.leaving{grid-template-rows:0fr;opacity:0}
 .cw.leaving .cw-in{overflow:hidden}
-.cw.flash .ac,.row.flash,.ord.flash .ord-in{animation:flash 1.6s var(--ease-out)}
+.cw.flash .ac,.row.flash,.ord.flash .ord-in,.wi.flash{animation:flash 1.6s var(--ease-out)}
 @keyframes flash{0%,25%{background:var(--md-secondary-container)}100%{}}
 
 /* ActivityRow */
@@ -1521,11 +1521,16 @@ function viewHomeDirector() {
   groups.forEach(list => list.sort((x, y) => x.aguardandoDesde < y.aguardandoDesde ? -1 : 1));
   const oldest = k => groups.get(k)[0].aguardandoDesde;
   const keys = [...groups.keys()].filter(k => k !== '_g').sort((x, y) => oldest(x) < oldest(y) ? -1 : 1);
+  /* After "Responder e devolver" the box keeps its place, so the activity still waiting in it stays in view. */
+  const pin = S.ui.homePin, at = k => pin.includes(k) ? pin.indexOf(k) : pin.length;
+  if (pin) keys.sort((x, y) => at(x) - at(y));
   if (groups.has('_g')) keys.push('_g');
+  S.ui.homeOrder = keys;
+  const lit = S.ui.homeFlash || []; S.ui.homeFlash = null;
   const old = all.filter(a => ago(a.aguardandoDesde) > 7).length;
   const item = a => {
     const d = ago(a.aguardandoDesde || a.mudouEm || TODAY);
-    return `<a class="wi" href="#/atividade/${a.id}">${seal(`${d}d`, d > 7, `Aguardando ${ageText(d)}`)}<span class="wi-main"><span class="wi-t">${esc(a.nome)}</span><span class="wi-m">${esc(firstName(a.criadoPor))}</span></span>${icon('chevR', 'chev')}</a>`;
+    return `<a class="wi${lit.includes(a.id) ? ' flash' : ''}" href="#/atividade/${a.id}">${seal(`${d}d`, d > 7, `Aguardando ${ageText(d)}`)}<span class="wi-main"><span class="wi-t">${esc(a.nome)}</span><span class="wi-m">${esc(firstName(a.criadoPor))}</span></span>${icon('chevR', 'chev')}</a>`;
   };
   const group = k => {
     const p = k !== '_g' && proj(k);
@@ -2038,6 +2043,8 @@ function render() {
     const t = app.querySelector('.tabs-scroll'); if (t && keep.tabs != null) t.scrollLeft = keep.tabs;
   }
   afterRender(changed);
+  const lit = app.querySelector('.wi.flash'), box = lit?.getBoundingClientRect();
+  if (box && (box.top < 0 || box.bottom > innerHeight - 160)) lit.scrollIntoView({ block: 'center', behavior: reduceMotion() ? 'auto' : 'smooth' });
 }
 function go(hash) { if (location.hash === hash) render(); else location.hash = hash; }
 window.addEventListener('hashchange', () => {
@@ -2045,6 +2052,7 @@ window.addEventListener('hashchange', () => {
   if (S.skipHistory) S.skipHistory = false;
   else if (prev && prev !== location.hash && !AUTH_VIEWS[routeOf(prev).name]) { S.ui.back.push(prev); if (S.ui.back.length > 30) S.ui.back.shift(); }
   if (S.sheet) closeSheet(true);
+  if (routeOf(location.hash).name !== 'home') S.ui.homePin = null;
   applyParams();
   S.prevHash = location.hash;
   render();
@@ -2459,9 +2467,13 @@ const FORMS = {
     if (submitter?.value === 'devolver') {
       const before = snapshotAct(a);
       a.status = 'Em andamento'; a.mudouEm = TODAY;
-      const prev = S.ui.back.pop();
-      if (prev && prev !== location.hash) { S.skipHistory = true; location.hash = prev; } else go('#/home');
-      toast(`Resposta enviada a ${firstName(a.criadoPor)}. A atividade voltou para Em andamento.`, () => { Object.assign(a, before); O().comments.splice(O().comments.indexOf(cm), 1); render(); });
+      const prev = S.ui.back.pop(), dest = prev && prev !== location.hash ? prev : '#/home';
+      const left = waitingDirector().filter(x => x.projeto === a.projeto);
+      if (routeOf(dest).name === 'home') { S.ui.homePin = S.ui.homeOrder; S.ui.homeFlash = left.map(x => x.id); }
+      if (dest === prev) { S.skipHistory = true; location.hash = prev; } else go('#/home');
+      const where = a.projeto ? `em ${proj(a.projeto).code}` : 'na Gestão';
+      const rest = left.length ? ` Ainda ${left.length === 1 ? 'há 1 atividade' : `há ${left.length} atividades`} aguardando você ${where}.` : ' A atividade voltou para Em andamento.';
+      toast(`Resposta enviada a ${firstName(a.criadoPor)}.${rest}`, () => { Object.assign(a, before); O().comments.splice(O().comments.indexOf(cm), 1); render(); });
     } else { render(); toast(`Comentário enviado a ${firstName(a.criadoPor)}`, null, { icon: 'check' }); }
   },
   cobrar: fd => {
