@@ -1381,7 +1381,7 @@ function cobrancaTarget(ctx) {
 const pendingCobrancas = uid => O().comments.filter(c => c.kind === 'cobranca' && !c.atendida && c.target.includes(uid));
 const waitingDirector = () => O().acts.filter(a => a.status === O().waitStatus);
 const updateAuthor = p => p.executor[0] || p.coordenador[0] || null;
-/* Conversa do projeto: a mensagem é um comentário (kind 'mensagem') na página do projeto. */
+/* Conversa do projeto: fica no banco do Escritório (ADR 0003); no protótipo mora em comments com kind 'mensagem'. */
 const msgStamp = m => m.date + ' ' + m.hora;
 const projMessages = pid => O().comments.filter(c => c.kind === 'mensagem' && c.projId === pid).sort((x, y) => msgStamp(x) < msgStamp(y) ? -1 : msgStamp(x) > msgStamp(y) ? 1 : 0);
 const lastMessage = pid => projMessages(pid).at(-1);
@@ -1954,7 +1954,7 @@ function viewChat(id) {
     <form class="chat-composer${draft.trim() ? '' : ' is-empty'}" data-form="chat" data-p="${p.id}">
       <div class="chat-row"><label class="sr" for="chat-in">Mensagem</label><textarea id="chat-in" class="chat-input" name="text" rows="1" placeholder="Mensagem para a equipe" autocomplete="off">${esc(draft)}</textarea>
         <button class="chat-send" type="submit" aria-label="Enviar mensagem" aria-disabled="${!draft.trim()}">${icon('send')}</button></div>
-      <p class="chat-note">Só a equipe vê · fica nos comentários do projeto no Notion</p></form>
+      <p class="chat-note">Só a equipe do escritório vê</p></form>
   </div>`;
 }
 /* Project page: the last two messages and the way in. */
