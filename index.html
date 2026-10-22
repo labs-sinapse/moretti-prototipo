@@ -98,7 +98,7 @@ svg{display:block}
 .rpl i{position:absolute;border-radius:50%;background:currentColor;opacity:.12;transform:scale(0);animation:rpl 420ms var(--ease-out) forwards}
 .rpl.out{opacity:0;transition:opacity 300ms linear}
 @keyframes rpl{to{transform:scale(1)}}
-.btn,.icon-btn,.tab,.opt,.wi,a.wg-head,.row,.pcard,.office,.pulse-cell,.strat-entry,.quiet-link,.fab,.side-fab,.searchbar,.side-search,.seg button,.tab-btn,.chip,.dchip,.fchip,.filter-btn,.cobrar-btn,.cal-day,.choice,.demo-switch,.side-me,.side-brand,.me-btn,.back-link,.link-out,.back-btn,.crow,.chat-send,.chat-proj,details.grp summary{position:relative}
+.btn,.icon-btn,.tab,.opt,.ib,.ib-head,.ib-tog,.pulse-cell,.inbox>*,.row,.pcard,.office,.fab,.side-fab,.side-search,.seg button,.tab-btn,.dchip,.fchip,.filter-btn,.cobrar-btn,.cal-day,.choice,.demo-switch,.side-me,.side-brand,.me-btn,.back-link,.link-out,.back-btn,.crow,.chat-send,.chat-proj,details.grp summary{position:relative}
 
 /* ───────── type (M3 scale, Roboto) ───────── */
 .t-display{font-size:32px;line-height:40px;font-weight:700;letter-spacing:-.01em;text-wrap:balance}
@@ -198,11 +198,6 @@ button.pill:active{background:var(--md-surface-container-high)}
 .back-btn:active,.brand-btn:active{background:rgba(29,28,21,.1)}
 .me-btn{display:grid;place-items:center;width:44px;height:44px;border-radius:50%}
 /* Home: search bar + avatar (direction A) */
-.topbar--search .topbar-in{display:flex;gap:8px;padding:0 12px 0 16px}
-.searchbar{flex:1;min-width:0;display:flex;align-items:center;gap:12px;height:48px;padding:0 16px;border-radius:var(--r-full);background:var(--md-surface-container-high);color:var(--ink-2);font-size:16px;text-align:left;transition:background var(--d-1)}
-.searchbar span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.searchbar .i{color:var(--ink-2)}
-.is-scrolled .topbar--search{background:var(--bg);box-shadow:0 1px 0 var(--md-hairline)}
 
 .mono{display:inline-grid;place-items:center;flex:none;width:32px;height:32px;border-radius:8px;background:var(--md-primary);color:var(--md-on-primary);font-size:12px;font-weight:500;letter-spacing:.06em}
 .mono-sm{width:32px;height:32px;font-size:11.5px}
@@ -270,7 +265,7 @@ a.sh-name::before{content:"";position:absolute;inset:-12px -8px}
 .cw-in{min-height:0}
 .cw.leaving{grid-template-rows:0fr;opacity:0}
 .cw.leaving .cw-in{overflow:hidden}
-.cw.flash .ac,.row.flash,.ord.flash .ord-in,.wi.flash{animation:flash 1.6s var(--ease-out)}
+.cw.flash .ac,.row.flash,.ord.flash .ord-in,.ib.flash{animation:flash 1.6s var(--ease-out)}
 @keyframes flash{0%,25%{background:var(--md-secondary-container)}100%{}}
 
 /* ActivityRow */
@@ -319,53 +314,47 @@ a.sh-name::before{content:"";position:absolute;inset:-12px -8px}
 .group .empty-mini{border-radius:0}
 .empty-mini .i{width:28px;height:28px;color:var(--ink-4);margin-bottom:4px}
 
-/* ───────── home ───────── */
-/* focal card: filled primary (direction A .hero) */
-.await-hero{margin:8px 0 0;padding:20px 20px 18px;border-radius:24px;background:var(--md-primary);color:var(--md-on-primary)}
-.await-num{font-size:57px;line-height:60px;font-weight:400;letter-spacing:-.02em}
-.await-hero h2{margin-top:6px;font-size:17px;line-height:22px;font-weight:500}
-.await-sub{margin-top:4px;font-size:14px;line-height:20px;opacity:.86}
-.await-hero.calm{background:var(--md-secondary-container);color:var(--md-on-secondary-container)}
-/* filter chips (direction A .chips) */
-.chips{display:flex;gap:8px;padding:16px 0 0;overflow-x:auto;scrollbar-width:none}
-.chips::-webkit-scrollbar{display:none}
-.chip{display:inline-flex;align-items:center;gap:8px;flex:none;height:32px;padding:0 16px;border-radius:var(--r-sm);font-size:14px;font-weight:500;color:var(--ink-2);box-shadow:inset 0 0 0 1px var(--md-outline-variant);transition:background var(--d-1)}
-.chip::before{content:"";position:absolute;inset:-6px 0}
-.chip .i{width:18px;height:18px;margin-left:-6px}
-.chip[aria-pressed=true]{background:var(--md-secondary-container);color:var(--md-on-secondary-container);box-shadow:none}
-.wgroups{display:flex;flex-direction:column;gap:12px;margin-top:16px}
-.wg{padding:6px;border-radius:20px;background:var(--md-project)}
-.wg-head{display:flex;align-items:center;gap:8px;padding:10px 8px 10px 12px;border-radius:14px}
-.wg-head .chev{width:20px;height:20px;color:var(--md-on-project-variant);flex:none}
-.wg-ht{flex:1;min-width:0}
-.wg-name{display:block;font-size:13.5px;line-height:18px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--md-on-project);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.wg-sub{display:block;margin-top:1px;font-size:12.5px;line-height:16px;color:var(--md-on-project-variant)}
-a.wg-head:active{background:rgba(68,62,32,.08)}
-@media (hover:hover){a.wg-head:hover{background:rgba(68,62,32,.06)}}
-.wg-list{display:flex;flex-direction:column;gap:6px}
-.wg-code{font-variant-numeric:tabular-nums}
-.wi{display:flex;align-items:center;gap:12px;padding:10px 12px;min-height:60px;border-radius:14px;background:var(--paper);transition:background var(--d-1)}
-.wi:active{background:var(--md-surface-container-low)}
-@media (hover:hover){.wi:hover{background:var(--md-surface-container-low)}}
-.wi-main{flex:1;min-width:0}
-.wi-t{display:block;font-size:15.5px;line-height:21px;font-weight:500}
-.wi-m{display:block;margin-top:2px;font-size:13px;line-height:18px;color:var(--ink-3)}
-
+/* ───────── entrada ───────── */
+/* One grouped list, oldest first. Row like an e-mail: who and how long (top), what (title), where
+   (project or the ask). Items of the same Projeto sit under a header in the project color. */
+.inbox-list{display:flex;flex-direction:column;gap:12px}
 .pulse{margin-top:8px}
 .pulse-row{display:flex;flex-direction:column}
 .pulse-cell{display:flex;align-items:center;gap:12px;min-height:52px;padding:0 12px 0 16px;text-align:left;background:var(--paper);transition:background var(--d-1)}
 .pulse-cell+.pulse-cell::before{content:"";position:absolute;top:0;left:16px;right:0;height:1px;background:var(--line);transform:scaleY(.5);transform-origin:top}
 .pulse-cell:active{background:var(--md-surface-container-low)}
-@media (hover:hover){.pulse-cell:hover,.strat-entry:hover,.quiet-link:hover{background:var(--md-surface-container-low)}}
+@media (hover:hover){.pulse-cell:hover{background:var(--md-surface-container-low)}}
 .pulse-label{flex:1;font-size:15.5px;color:var(--ink)}
 .pulse-num{display:inline-grid;place-items:center;min-width:24px;height:24px;padding:0 8px;border-radius:12px;font-size:13px;font-weight:600;color:var(--ink-3)}
 .pulse-num.alert{background:var(--md-seal-hot);color:#fff}
-
-.strat-entry{display:flex;align-items:center;gap:12px;min-height:64px;padding:10px 12px 10px 16px;background:var(--paper);transition:background var(--d-1)}
-.strat-entry .txt{flex:1;min-width:0}
-.strat-entry b{display:block;font-size:15.5px;font-weight:500}
-.strat-entry small{display:block;font-size:13px;color:var(--ink-3);margin-top:1px}
-.strat-entry svg.spark{width:72px;height:30px;flex:none}
+.ib{display:flex;align-items:flex-start;gap:12px;padding:12px 16px 12px 12px;background:var(--paper);transition:background var(--d-1)}
+.inbox>*+*::before,.ib-items>.ib+.ib::before{content:"";position:absolute;z-index:1;top:0;left:0;right:0;height:1px;background:var(--line);transform:scaleY(.5);transform-origin:top}
+.ib-items>.ib+.ib::before{left:64px}
+.ib>.av{width:40px;height:40px;font-size:14px;margin-top:2px}
+.ib-main{flex:1;min-width:0}
+.ib-top{display:flex;align-items:center;gap:8px}
+.ib-from{flex:1;min-width:0;font-size:14px;line-height:20px;font-weight:500;color:var(--ink-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ib-age{flex:none;font-size:12.5px;line-height:18px;font-weight:600;color:var(--md-seal)}
+.ib-age.hot{color:var(--md-seal-hot)}
+.ib-dot{flex:none;width:8px;height:8px;border-radius:50%;background:var(--md-primary)}
+.ib-t{display:block;margin-top:1px;font-size:15.5px;line-height:21px;font-weight:500;color:var(--ink)}
+.ib-m{margin-top:2px;font-size:13px;line-height:18px;color:var(--ink-3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ib.unread .ib-from{color:var(--ink);font-weight:700}
+.ib.unread .ib-t{font-weight:700}
+.ib-end{position:relative;z-index:1;align-self:center;flex:none}
+.ib:active{background:var(--md-surface-container-low)}
+@media (hover:hover){.ib:hover{background:var(--md-surface-container-low)}}
+.ib-head{display:flex;align-items:stretch;background:var(--md-project)}
+.ib-tog{flex:1;min-width:0;display:flex;align-items:center;gap:10px;padding:10px 14px 10px 16px;text-align:left;transition:background var(--d-1)}
+.ib-tog .tog{width:20px;height:20px;flex:none;color:var(--md-on-project-variant);transition:transform var(--d-2) var(--ease-out)}
+.ib-grp.shut .ib-tog .tog{transform:rotate(-90deg)}
+.ib-n{flex:none;display:inline-grid;place-items:center;min-width:24px;height:24px;padding:0 8px;border-radius:12px;font-size:13px;font-weight:600;color:var(--md-on-project);background:rgba(255,255,255,.45)}
+.ib-n.fresh{background:var(--md-primary);color:var(--md-on-primary)}
+.ib-ht{flex:1;min-width:0}
+.ib-hn{display:block;font-size:13.5px;line-height:18px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--md-on-project);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ib-hs{display:block;margin-top:1px;font-size:12.5px;line-height:16px;color:var(--md-on-project-variant)}
+.ib-tog:active{background:rgba(29,28,21,.08)}
+@media (hover:hover){.ib-tog:hover{background:rgba(29,28,21,.05)}}
 
 .empty{display:flex;flex-direction:column;align-items:center;text-align:center;margin-top:8px;padding:32px 24px 36px;background:var(--md-surface-container);border-radius:var(--r-xl)}
 .empty svg.art{width:200px;height:auto;margin-bottom:20px;color:var(--md-primary)}
@@ -373,12 +362,6 @@ a.wg-head:active{background:rgba(68,62,32,.08)}
 .empty p{margin-top:8px;max-width:30ch;color:var(--ink-2);font-size:15px}
 .empty .seal{display:inline-flex;align-items:center;gap:6px;margin-top:20px;font-size:13px;font-weight:500;color:var(--done);background:var(--done-bg);height:32px;padding:0 12px;border-radius:var(--r-sm)}
 .empty .seal .i{width:16px;height:16px}
-
-.group.quiet{margin-top:12px}
-.quiet-link{display:flex;align-items:center;gap:12px;min-height:52px;padding:0 12px 0 16px;font-size:15.5px;background:var(--paper);transition:background var(--d-1)}
-.quiet-link:active{background:var(--md-surface-container-low)}
-.quiet-link .lbl{flex:1;min-width:0}
-.strat{margin-top:4px}
 
 /* ───────── operação ───────── */
 .op-section{scroll-margin-top:calc(var(--safe-t) + var(--topbar-h) + 52px)}
@@ -431,7 +414,7 @@ a.wg-head:active{background:rgba(68,62,32,.08)}
 .dchip span{overflow:hidden;text-overflow:ellipsis}
 .dchip .i{width:18px;height:18px}
 .dchip.on{background:var(--md-secondary-container);color:var(--md-on-secondary-container);box-shadow:none}
-@media (hover:hover){.dchip:hover,.chip:hover,.filter-btn:hover{background:rgba(29,28,21,.06)}.dchip.on:hover,.chip[aria-pressed=true]:hover{background:var(--md-secondary-container)}}
+@media (hover:hover){.dchip:hover,.filter-btn:hover{background:rgba(29,28,21,.06)}.dchip.on:hover{background:var(--md-secondary-container)}}
 
 /* ───────── projetos ───────── */
 .pgrid{display:grid;gap:8px;padding-top:12px}
@@ -896,7 +879,7 @@ body.dragging,body.dragging *{cursor:grabbing!important;-webkit-user-select:none
   .home-side{position:sticky;top:40px}
   .home-side .pulse{margin-top:0}
   .home-side .pulse .sh:first-child{padding-top:0}
-  .await-hero{margin-top:0}
+  .home-main .empty{margin-top:0}
 
   .op-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;padding-bottom:20px}
   .op-head .page-head{padding:0;flex:none}
@@ -1308,7 +1291,7 @@ function buildOffice(cfg) {
 const S = {
   offices: { moretti: buildOffice(MORETTI), exemplo: buildOffice(EXEMPLO) },
   officeId: 'moretti', userId: 'henrique', session: 'login', email: '',
-  ui: { opView: 'status', opStatus: 'Em andamento', fProj: '', fPessoa: '', fSemDono: false, projFilter: 'andamento', homeFilter: 'todas', show: {}, orderDraft: {}, back: [], lastTab: 'home', chatSeen: {}, chatDraft: {} },
+  ui: { opView: 'status', opStatus: 'Em andamento', fProj: '', fPessoa: '', fSemDono: false, projFilter: 'andamento', show: {}, orderDraft: {}, back: [], lastTab: 'home', chatSeen: {}, chatDraft: {}, inboxShut: {} },
   sheet: null, toast: null, lastKey: '', suppressClick: 0,
 };
 Object.values(S.offices).forEach(o => Object.assign(S.ui.chatSeen, o.chatSeen));
@@ -1380,6 +1363,32 @@ function cobrancaTarget(ctx) {
 }
 const pendingCobrancas = uid => O().comments.filter(c => c.kind === 'cobranca' && !c.atendida && c.target.includes(uid));
 const waitingDirector = () => O().acts.filter(a => a.status === O().waitStatus);
+
+/* Entrada: one item per thing waiting on the person. Everyone gets the Cobranças they received;
+   the Diretor also gets what waits on him, the Gerente what is late and the stalled projects.
+   New is anything from the last day not yet opened. */
+const inboxOpened = new Set();
+const openedKey = href => [S.officeId, S.userId, href].join('|');
+function inboxItems() {
+  const role = me().role, items = [];
+  const add = (it, sinceKind) => { const d = ago(it.since); items.push({ ...it, days: d, hot: d > 7, ageLabel: `${sinceKind} ${d <= 0 ? 'hoje' : d === 1 ? 'há 1 dia' : `há ${d} dias`}`, fresh: d <= 1 && !inboxOpened.has(openedKey(it.href)) }); };
+  pendingCobrancas(S.userId).forEach(c => {
+    const a = act(c.actId);
+    add({ id: 'cob-' + c.id, kind: 'cobranca', from: c.author, title: a.nome, note: `Pede: ${c.motivo.toLowerCase()}`, projId: a.projeto, since: c.date, href: `#/atividade/${a.id}` }, 'Cobrada');
+  });
+  if (role === 'diretor') waitingDirector().forEach(a =>
+    add({ id: a.id, kind: 'aguardando', from: a.criadoPor, title: a.nome, projId: a.projeto, since: a.aguardandoDesde || a.mudouEm || TODAY, href: `#/atividade/${a.id}` }, 'Aguardando'));
+  if (role === 'gerente') {
+    O().acts.filter(isLate).forEach(a =>
+      add({ id: a.id, kind: 'atrasada', from: a.responsavel[0] || null, fromText: a.responsavel.length > 1 ? joinNames(a.responsavel.map(firstName)) : undefined, title: a.nome, projId: a.projeto, since: a.prazo, href: `#/atividade/${a.id}`, cobrar: { act: a.id } }, 'Atrasada'));
+    O().projects.filter(isStalled).forEach(p =>
+      add({ id: 'proj-' + p.id, kind: 'parado', from: updateAuthor(p), title: 'Projeto parado, sem movimentação', projId: p.id, since: addDays(TODAY, -lastMoveAgo(p)), href: `#/projeto/${p.id}`, cobrar: { p: p.id } }, 'Parado'));
+  }
+  items.forEach(it => { if (it.fromText == null) it.fromText = it.from ? person(it.from).nome : 'Sem responsável'; });
+  return items.sort((x, y) => x.since < y.since ? -1 : x.since > y.since ? 1 : 0);
+}
+const inboxFoldKey = k => [S.officeId, S.userId, k].join('|');
+const inboxFresh = () => inboxItems().filter(it => it.fresh).length;
 const updateAuthor = p => p.executor[0] || p.coordenador[0] || null;
 /* Conversa do projeto: fica no banco do Escritório (ADR 0003); no protótipo mora em comments com kind 'mensagem'. */
 const msgStamp = m => m.date + ' ' + m.hora;
@@ -1431,7 +1440,7 @@ const PRIO = {
   'Stand By': { cls: 'standby', label: 'Stand by', icon: 'pause', quiet: true },
 };
 const AV_TONES = [['#e3dfc8', '#57502c'], ['#eed9cb', '#7f4b33'], ['#dbe3d6', '#46593f'], ['#d9e0e0', '#3f5357'], ['#e7d8db', '#6b4650'], ['#efe0bf', '#7a5717'], ['#e3ddd3', '#5b5347'], ['#dfe2cc', '#535a2c']];
-const ROUTE_LABEL = { home: 'Início', operacao: 'Operação', projetos: 'Projetos', projeto: 'Projeto', atividade: 'Atividade', minhas: 'Minhas', estrategica: 'Estratégia', conversas: 'Conversas', conversa: 'Conversa' };
+const ROUTE_LABEL = { home: 'Entrada', operacao: 'Operação', projetos: 'Projetos', projeto: 'Projeto', atividade: 'Atividade', minhas: 'Minhas', estrategica: 'Estratégia', conversas: 'Conversas', conversa: 'Conversa' };
 const prazoLabelLong = d => { const x = utc(d); return `${WD_SHORT[x.getUTCDay()]}, ${x.getUTCDate()} ${MONTHS[x.getUTCMonth()]}`; };
 function prazoInfo(a) {
   if (!a.prazo) return { cls: 'none', text: 'Sem prazo' };
@@ -1490,6 +1499,7 @@ const ICONS = {
 };
 /* Filled twins for the active navigation item (Material: filled icon when selected). */
 const ICONS_FILLED = {
+  inbox: '<path fill-rule="evenodd" d="M6.3 4.25h11.4c.6 0 1.15.4 1.3 1l2.25 8.5v5c0 .85-.7 1.5-1.5 1.5H4.25c-.85 0-1.5-.65-1.5-1.5v-5L5 5.25c.15-.6.7-1 1.3-1zM6.65 5.9 4.8 12.75h4.15l1.5 2.5h3.1l1.5-2.5h4.15L17.35 5.9z"/>',
   home: '<path d="M3.2 10.1 12 3.2l8.8 6.9-.9 1.2-.9-.7v8.6c0 .7-.6 1.3-1.3 1.3h-3.9v-6h-3.6v6H6.3c-.7 0-1.3-.6-1.3-1.3v-8.6l-.9.7z"/>',
   board: '<rect x="3" y="4" width="5.5" height="16" rx="1.6"/><rect x="9.25" y="4" width="5.5" height="11" rx="1.6"/><rect x="15.5" y="4" width="5.5" height="13.5" rx="1.6"/>',
   plan: '<rect x="3.5" y="3.5" width="7" height="7.5" rx="1.6"/><rect x="12" y="3.5" width="8.5" height="7.5" rx="1.6"/><rect x="3.5" y="12.5" width="7" height="8" rx="1.6"/><rect x="12" y="12.5" width="8.5" height="8" rx="1.6"/>',
@@ -1650,14 +1660,21 @@ function viewPick() {
     <div class="offices">${Object.values(S.offices).map(card).join('')}</div>`);
 }
 
-/* ============ screens: home ============ */
+/* ============ screens: entrada ============ */
 const ageText = d => d <= 0 ? 'desde hoje' : d === 1 ? 'há 1 dia' : `há ${d} dias`;
-const titleSentinel = '<span class="title-sentinel" aria-hidden="true"></span>';
-
-/* Focal card (direction A): filled primary, big number, what it counts, the urgency line. */
-const heroCard = (n, label, sub) => `<section class="await-hero">${n == null ? '' : `<p class="await-num num">${n}</p>`}<h2>${label}</h2>${sub ? `<p class="await-sub">${sub}</p>` : ''}</section>`;
-
-/* "Operação" summary as a grouped list with red pill counters (replaces the pulse strip). */
+const INBOX_KINDS = { aguardando: ['aguardando você', 'aguardando você'], cobranca: ['cobrança', 'cobranças'], atrasada: ['atividade atrasada', 'atividades atrasadas'], parado: ['projeto parado', 'projetos parados'] };
+const INBOX_EMPTY = {
+  diretor: ['Nada aguardando você', 'A equipe tem o que precisa para seguir. Quando alguém precisar de uma decisão sua, aparece aqui.'],
+  gerente: ['Nada atrasado nem parado', 'Quando uma atividade passar do prazo ou um projeto parar, aparece aqui.'],
+  projetista: ['Nenhuma cobrança', 'Quando alguém cobrar uma atividade sua, aparece aqui.'],
+};
+function inboxSummary(items) {
+  const parts = Object.entries(INBOX_KINDS).map(([k, [one, many]]) => { const n = items.filter(it => it.kind === k).length; return n ? `${n} ${n === 1 ? one : many}` : ''; }).filter(Boolean);
+  const old = items.filter(it => it.hot).length;
+  if (old) parts.push(`${old} há mais de uma semana`);
+  return parts.join(' · ');
+}
+/* "Operação" beside the Entrada (Diretor and Gerente): three counters that open the filtered lists. */
 function pulseStrip() {
   const n = homeNumbers();
   const cell = (k, v, label, alert) => `<button class="pulse-cell" data-action="pulse" data-k="${k}"><span class="pulse-label">${label}</span><span class="pulse-num num${alert && v ? ' alert' : ''}">${v}</span>${icon('chevR', 'chev')}</button>`;
@@ -1667,90 +1684,55 @@ function pulseStrip() {
     ${cell('loose', n.loose, 'Sem responsável ou sem prazo')}
   </div></section>`;
 }
-function stratEntry() {
-  const vals = [5, 6, 6, 4, 5, 3, 4, 4, 3, 2, 3, homeNumbers().stalled];
-  const W = 72, H = 30, max = 7;
-  const pts = vals.map((v, i) => [2 + (W - 8) * i / (vals.length - 1), H - 4 - (H - 10) * v / max]);
-  const [lx, ly] = pts[pts.length - 1];
-  return `<section class="strat">${secHead('Estratégia', 'Só você vê')}<div class="group"><a class="strat-entry" href="#/estrategica"><span class="txt"><b>Visão estratégica</b><small>Como a operação evolui ao longo do tempo</small></span>
-    <svg class="spark" viewBox="0 0 ${W} ${H}" aria-hidden="true"><path d="M${pts.map(p => p.map(n => n.toFixed(1)).join(',')).join(' L')}" fill="none" stroke="var(--chart-a)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="${lx}" cy="${ly}" r="2.75" fill="var(--chart-a)"/></svg>
-    ${icon('chevR', 'chev')}</a></div></section>`;
+/* One item: who it comes from and how long it waits (top), what (title), the ask of a Cobrança. */
+function inboxRow(it, { lit }) {
+  const meta = it.note ? esc(it.note) : '';
+  const age = it.days <= 0 ? 'hoje' : `${it.days}d`;
+  const cobrar = it.cobrar && canCobrar()
+    ? `<button class="cobrar-btn" ${it.cobrar.act ? `data-action="cobrar" data-act="${it.cobrar.act}"` : `data-action="cobrar-projeto" data-p="${it.cobrar.p}"`} aria-label="Cobrar ${esc(it.fromText)}">Cobrar</button>` : '';
+  return `<div class="ib${it.fresh ? ' unread' : ''}${lit ? ' flash' : ''}" data-ib="${esc(it.id)}">${avatar(it.from, 'md')}
+    <div class="ib-main"><p class="ib-top"><span class="ib-from">${esc(it.fromText)}</span><span class="ib-age num${it.hot ? ' hot' : ''}" title="${esc(it.ageLabel)}">${age}</span>${it.fresh ? '<i class="ib-dot" aria-hidden="true"></i>' : ''}</p>
+    <a class="ib-t stretch" href="${it.href}">${esc(it.title)}${it.fresh ? '<span class="sr">, novo</span>' : ''}<span class="sr">, ${esc(it.ageLabel.toLowerCase())}</span></a>${meta ? `<p class="ib-m">${meta}</p>` : ''}</div>
+    ${cobrar ? `<div class="ib-end">${cobrar}</div>` : ''}</div>`;
 }
-
-const HOME_FILTERS = [['todas', 'Todas'], ['projetos', 'Projetos'], ['gestao', 'Gestão']];
-function viewHomeDirector() {
-  const all = waitingDirector(), f = S.ui.homeFilter || 'todas';
-  const waiting = all.filter(a => f === 'todas' || (f === 'projetos' ? !!a.projeto : !a.projeto));
+/* Entrada: oldest first, since it is a queue to clear, not a feed. Every Projeto is its own card
+   under the project's header (the client's box color), even with one item. Gestão comes last. */
+function viewInbox() {
+  const items = inboxItems(), role = me().role;
   const groups = new Map();
-  waiting.forEach(a => { const k = a.projeto || '_g'; if (!groups.has(k)) groups.set(k, []); groups.get(k).push(a); });
-  groups.forEach(list => list.sort((x, y) => x.aguardandoDesde < y.aguardandoDesde ? -1 : 1));
-  const oldest = k => groups.get(k)[0].aguardandoDesde;
-  const keys = [...groups.keys()].filter(k => k !== '_g').sort((x, y) => oldest(x) < oldest(y) ? -1 : 1);
-  /* After "Responder e devolver" the box keeps its place, so the activity still waiting in it stays in view. */
+  items.forEach(it => { const k = it.projId || '_g'; if (!groups.has(k)) groups.set(k, []); groups.get(k).push(it); });
+  const keys = [...groups.keys()].filter(k => k !== '_g');
+  /* After "Responder e devolver" the group keeps its place, so what still waits in it stays in view. */
   const pin = S.ui.homePin, at = k => pin.includes(k) ? pin.indexOf(k) : pin.length;
   if (pin) keys.sort((x, y) => at(x) - at(y));
   if (groups.has('_g')) keys.push('_g');
   S.ui.homeOrder = keys;
   const lit = S.ui.homeFlash || []; S.ui.homeFlash = null;
-  const old = all.filter(a => ago(a.aguardandoDesde) > 7).length;
-  const item = a => {
-    const d = ago(a.aguardandoDesde || a.mudouEm || TODAY);
-    return `<a class="wi${lit.includes(a.id) ? ' flash' : ''}" href="#/atividade/${a.id}">${seal(`${d}d`, d > 7, `Aguardando ${ageText(d)}`)}<span class="wi-main"><span class="wi-t">${esc(a.nome)}</span><span class="wi-m">${esc(firstName(a.criadoPor))}</span></span>${icon('chevR', 'chev')}</a>`;
+  const block = k => {
+    const list = groups.get(k);
+    const p = k !== '_g' && proj(k), name = p ? `${p.code} - ${p.client}` : 'Gestão';
+    /* The whole header folds the group (the Projeto is one tap away from each Atividade). A group with a highlighted item opens again. */
+    const ck = inboxFoldKey(k), shut = !!S.ui.inboxShut[ck] && !list.some(it => lit.includes(it.id));
+    const fresh = list.some(it => it.fresh);
+    const head = `<div class="ib-head"><button class="ib-tog" data-action="inbox-fold" data-k="${esc(ck)}" aria-expanded="${!shut}" aria-controls="ibg-${esc(k)}"><span class="ib-ht"><span class="ib-hn">${p ? projTitle(p) : 'Gestão'}</span>${p ? `<span class="ib-hs">${esc(etapaOf(p) || p.status)}</span>` : ''}</span>${shut ? `<span class="ib-n num${fresh ? ' fresh' : ''}">${list.length}<span class="sr"> ${list.length === 1 ? 'item' : 'itens'}${fresh ? ', com novos' : ''}</span></span>` : ''}${icon('chevD', 'tog')}</button></div>`;
+    return `<section class="ib-grp${shut ? ' shut' : ''}" aria-label="${esc(name)}">${head}<div class="ib-items" id="ibg-${esc(k)}"${shut ? ' hidden' : ''}>${list.map(it => inboxRow(it, { lit: lit.includes(it.id) })).join('')}</div></section>`;
   };
-  const group = k => {
-    const p = k !== '_g' && proj(k);
-    const head = p
-      ? `<a class="wg-head" href="#/projeto/${p.id}"><span class="wg-ht"><span class="wg-name"><span class="num wg-code">${esc(p.code)}</span> - ${esc(p.client)}</span><span class="wg-sub">${esc(etapaOf(p) || p.status)}</span></span>${icon('chevR', 'chev')}</a>`
-      : `<div class="wg-head"><span class="wg-ht"><span class="wg-name">Gestão</span><span class="wg-sub wg-code">sem projeto</span></span></div>`;
-    return `<section class="wg">${head}<div class="wg-list">${groups.get(k).map(item).join('')}</div></section>`;
-  };
-  const chips = `<div class="chips" role="group" aria-label="Mostrar">${HOME_FILTERS.map(([k, l]) => `<button class="chip" data-action="home-filter" data-k="${k}" aria-pressed="${f === k}">${f === k ? icon('check') : ''}${l}</button>`).join('')}</div>`;
-  const focal = all.length
-    ? `${heroCard(all.length, all.length === 1 ? 'atividade aguardando você' : 'atividades aguardando você', old ? (old === 1 ? 'Uma espera há mais de uma semana' : `${old} esperam há mais de uma semana`) : 'Todas chegaram nesta semana')}${titleSentinel}
-       ${chips}<div class="wgroups">${keys.map(group).join('') || emptyMini('Nada aguardando neste filtro.', 'checkCircle')}</div>`
-    : `${titleSentinel}<section class="empty">${HOUSE_ART.replace('<svg ', '<svg class="art" ')}<h3>Nada aguardando você</h3><p>A equipe tem o que precisa para seguir. Quando alguém precisar de uma decisão sua, aparece aqui.</p><span class="seal">${icon('checkCircle')}Tudo respondido</span></section>`;
-  return `<div class="home-grid"><div class="home-main">${focal}</div><div class="home-side">${pulseStrip()}${stratEntry()}</div></div>`;
-}
-
-function stalledRow(p) {
-  const d = lastMoveAgo(p);
-  return `<div class="row">${seal(`${d}d`, d > 7, `Parado há ${d} dias`)}<div class="row-main"><a class="row-t stretch" href="#/projeto/${p.id}"><b><span class="num">${esc(p.code)}</span> - ${esc(p.client)}</b></a><p class="row-m"><span class="meta-in"><span>${esc(etapaOf(p) || '')}</span><span>parado há ${d} dias</span></span></p></div>
-    <div class="row-end">${canCobrar() ? `<button class="cobrar-btn" data-action="cobrar-projeto" data-p="${p.id}">Cobrar</button>` : icon('chevR', 'chev')}</div></div>`;
-}
-function viewHomeManager() {
-  const o = O();
-  const late = sortActs(o.acts.filter(isLate));
-  const stalled = o.projects.filter(isStalled).sort((x, y) => lastMoveAgo(y) - lastMoveAgo(x));
-  const waiting = waitingDirector().length;
-  const oldLate = late.filter(a => ago(a.prazo) > 7).length;
-  return `<div class="home-grid"><div class="home-main">${heroCard(late.length, late.length === 1 ? 'atividade atrasada' : 'atividades atrasadas', `${oldLate ? `${oldLate} há mais de uma semana · ` : ''}${plural(stalled.length, 'projeto parado', 'projetos parados')}`)}${titleSentinel}
-    <section class="sec sec-first">${secHead('Atrasadas', late.length > 5 ? '<button class="aside" data-action="pulse" data-k="late">Ver todas</button>' : `<span class="num">${late.length}</span>`)}
-      <div class="group rows">${late.slice(0, 5).map(a => actRow(a, { meta: ['project', 'who'], end: 'cobrar' })).join('') || emptyMini('Nenhuma atividade atrasada.', 'checkCircle')}</div></section>
-    <section class="sec">${secHead('Projetos parados', `<span class="num">${stalled.length}</span>`)}
-      <div class="group rows">${stalled.map(stalledRow).join('') || emptyMini('Nenhum projeto parado.', 'checkCircle')}</div></section>
-    </div><div class="home-side">${pulseStrip()}
-    <div class="group quiet"><a class="quiet-link" href="#/operacao" data-action="op-wait"><span class="lbl">${plural(waiting, 'atividade aguardando', 'atividades aguardando')} o Diretor</span><span class="bad num">${waiting}</span>${icon('chevR', 'chev')}</a></div>
-    </div></div>`;
+  const [h, t] = INBOX_EMPTY[role];
+  const main = items.length
+    ? `<div class="inbox-list">${keys.map(k => `<div class="group inbox">${block(k)}</div>`).join('')}</div>`
+    : `<section class="empty">${HOUSE_ART.replace('<svg ', '<svg class="art" ')}<h3>${h}</h3><p>${t}</p><span class="seal">${icon('checkCircle')}Tudo em dia</span></section>`;
+  const title = largeTitle('Entrada', items.length ? inboxSummary(items) : '');
+  /* Diretor and Gerente keep the Operação counters beside the list (below it on the phone). */
+  return isLead() ? `${title}<div class="home-grid"><div class="home-main">${main}</div><div class="home-side">${pulseStrip()}</div></div>` : title + main;
 }
 
 function viewMine() {
-  const uid = S.userId, o = O(), u = me();
-  const cobs = pendingCobrancas(uid).sort((x, y) => x.date < y.date ? 1 : -1);
+  const uid = S.userId, o = O();
   const mine = o.acts.filter(a => isOpen(a) && a.responsavel.includes(uid));
   const groups = BUCKETS.map(([k, label]) => [k, label, sortActs(mine.filter(a => dateBucket(a) === k))]).filter(g => g[2].length);
-  const cob = c => {
-    const a = act(c.actId), d = ago(c.date);
-    return `<a class="wi" href="#/atividade/${a.id}">${seal(`${d}d`, d > 7, `Cobrada ${ageText(d)}`)}<span class="wi-main"><span class="wi-t">${esc(a.nome)}</span><span class="wi-m">${esc(firstName(c.author))} pede: ${esc(c.motivo.toLowerCase())}</span></span>${icon('chevR', 'chev')}</a>`;
-  };
   const late = mine.filter(isLate).length;
-  const head = u.role === 'projetista'
-    ? (cobs.length
-      ? `${heroCard(cobs.length, cobs.length === 1 ? 'cobrança aguardando você' : 'cobranças aguardando você', `A mais recente de ${esc(firstName(cobs[0].author))}, ${ageText(ago(cobs[0].date))}`)}${titleSentinel}
-         <section class="sec sec-first">${secHead('Cobranças', `<span class="num">${cobs.length}</span>`)}<div class="group">${cobs.map(cob).join('')}</div></section>`
-      : `<section class="await-hero calm"><h2>Nenhuma cobrança pendente</h2><p class="await-sub">${plural(mine.length, 'atividade aberta', 'atividades abertas')} com você${late ? `, ${late} ${late === 1 ? 'atrasada' : 'atrasadas'}` : ''}.</p></section>${titleSentinel}`)
-    : `${largeTitle('Suas atividades', `${plural(mine.length, 'atividade aberta', 'atividades abertas')} com você como responsável`)}${cobs.length ? `<section class="sec sec-first">${secHead('Cobranças', `<span class="num">${cobs.length}</span>`)}<div class="group">${cobs.map(cob).join('')}</div></section>` : ''}`;
   const list = groups.map(([k, label, l]) => `<section class="op-section">${secHead(label, `<span class="num">${l.length}</span>`, { cls: k === 'atrasadas' ? 'late' : '' })}<div class="group">${l.map(a => activityCard(a, { noWho: true })).join('')}</div></section>`).join('');
-  return `${head}<div class="mine-list">${list || emptyMini('Nenhuma atividade com você.', 'checkCircle')}</div>`;
+  return `${largeTitle('Suas atividades', `${plural(mine.length, 'atividade aberta', 'atividades abertas')} com você${late ? `, ${late} ${late === 1 ? 'atrasada' : 'atrasadas'}` : ''}`)}<div class="mine-list">${list || emptyMini('Nenhuma atividade com você.', 'checkCircle')}</div>`;
 }
 
 /* ============ screens: operação ============ */
@@ -2161,10 +2143,9 @@ function viewStrategic() {
 
 /* ============ shell ============ */
 function tabsFor(role) {
-  const t = { home: { route: 'home', label: 'Início', icon: 'home' }, op: { route: 'operacao', label: 'Operação', icon: 'board' }, proj: { route: 'projetos', label: 'Projetos', icon: 'plan' }, chat: { route: 'conversas', label: 'Conversas', icon: 'chat', badge: unreadTotal() } };
+  const t = { home: { route: 'home', label: 'Entrada', icon: 'inbox', badge: inboxFresh(), badgeLabel: ['novo', 'novos'] }, op: { route: 'operacao', label: 'Operação', icon: 'board' }, proj: { route: 'projetos', label: 'Projetos', icon: 'plan' }, chat: { route: 'conversas', label: 'Conversas', icon: 'chat', badge: unreadTotal() } };
   if (role === 'diretor') return [t.home, t.op, t.proj, t.chat, { route: 'estrategica', label: 'Estratégia', icon: 'chart' }];
-  if (role === 'gerente') return [t.home, t.op, t.proj, t.chat, { route: 'minhas', label: 'Minhas', icon: 'mine' }];
-  return [{ route: 'home', label: 'Minhas', icon: 'mine' }, t.op, t.proj, t.chat];
+  return [t.home, t.op, t.proj, t.chat, { route: 'minhas', label: 'Minhas', icon: 'mine' }];
 }
 const DETAIL = { projeto: true, atividade: true, conversa: true };
 const chatOf = r => { const p = r.name === 'conversa' && proj(r.id); return p && canChat(p) ? p : null; };
@@ -2173,30 +2154,26 @@ function backLabel() {
   if (!prev) return 'Voltar';
   const r = routeOf(prev);
   if (r.name === 'projeto' && proj(r.id)) return proj(r.id).client;
-  if (r.name === 'home' && me().role === 'projetista') return 'Minhas';
   return r.name === 'atividade' ? 'Voltar' : ROUTE_LABEL[r.name] || 'Voltar';
 }
-/* The extended FAB "Cobrar" lives where chasing people is the job: the Diretor home and the
-   Operação list (the Gerente home already has a Cobrar on every row). Only when something is
-   late or stalled. The Projetista never cobra, so never sees it. */
-const FAB_ROUTES = { home: true, operacao: true };
+/* The extended FAB "Cobrar" lives where chasing people is the job: the Operação list (the Gerente's
+   Entrada already has a Cobrar on every row). Only when something is late or stalled. The
+   Projetista never cobra, so never sees it. */
+const FAB_ROUTES = { operacao: true };
 function shell(r, body, { wide, title }) {
   const o = O(), u = me(), tabs = tabsFor(u.role);
   const inChat = !!chatOf(r);
-  const activeTab = inChat ? 'conversas' : DETAIL[r.name] ? S.ui.lastTab : (r.name === 'minhas' && u.role === 'projetista' ? 'home' : r.name);
+  const activeTab = inChat ? 'conversas' : DETAIL[r.name] ? S.ui.lastTab : r.name;
   if (!DETAIL[r.name]) S.ui.lastTab = activeTab;
-  const link = (t, cls) => `<a href="#/${t.route}" class="${cls}"${t.route === activeTab ? ' aria-current="page"' : ''}><span class="nav-ind">${icon(t.icon, 'off')}${iconFill(t.icon, 'on')}${t.badge ? `<span class="nav-badge num" aria-hidden="true">${t.badge > 99 ? '99+' : t.badge}</span>` : ''}</span><span class="nav-l">${t.label}</span>${t.badge ? `<span class="sr">, ${plural(t.badge, 'não lida', 'não lidas')}</span>` : ''}</a>`;
+  const link = (t, cls) => `<a href="#/${t.route}" class="${cls}"${t.route === activeTab ? ' aria-current="page"' : ''}><span class="nav-ind">${icon(t.icon, 'off')}${iconFill(t.icon, 'on')}${t.badge ? `<span class="nav-badge num" aria-hidden="true">${t.badge > 99 ? '99+' : t.badge}</span>` : ''}</span><span class="nav-l">${t.label}</span>${t.badge ? `<span class="sr">, ${plural(t.badge, ...(t.badgeLabel || ['não lida', 'não lidas']))}</span>` : ''}</a>`;
   const meBtn = `<button class="me-btn" data-action="account-sheet" aria-label="Conta e Escritório" aria-haspopup="dialog">${avatar(u.id, 'md')}</button>`;
-  /* Home: the Material search bar with the avatar (direction A). Inner screens: a small top app bar
-     with back, the compact title once the page title scrolls away, and actions. Three grid columns,
-     so back and the compact title can never overlap. */
-  const bar = r.name === 'home'
-    ? `<header class="topbar topbar--search"><div class="topbar-in"><button class="searchbar" data-action="search-sheet" aria-haspopup="dialog">${icon('search')}<span>Buscar projeto ou atividade</span></button>${meBtn}</div></header>`
-    : `<header class="topbar"><div class="topbar-in"><div class="topbar-l">${DETAIL[r.name]
+  /* Small top app bar: back (or the brand), the compact title once the page title scrolls away, and
+     actions. Three grid columns, so back and the compact title can never overlap. */
+  const bar = `<header class="topbar"><div class="topbar-in"><div class="topbar-l">${DETAIL[r.name]
         ? `<button class="back-btn" data-action="back" aria-label="Voltar para ${esc(backLabel())}">${icon('back')}<span>${esc(backLabel())}</span></button>`
         : `<a class="brand-btn" href="#/home" aria-label="${esc(o.nome)}, início"><span class="mono mono-sm">${o.mono}</span></a>`}</div><div class="topbar-title" aria-hidden="true">${esc(title || '')}</div><div class="topbar-r"><button class="icon-btn" data-action="search-sheet" aria-label="Buscar projeto ou atividade" aria-haspopup="dialog">${icon('search')}</button>${meBtn}</div></div></header>`;
   const somethingToChase = () => O().acts.some(isLate) || O().projects.some(isStalled);
-  const fab = canCobrar() && FAB_ROUTES[r.name] && !(r.name === 'home' && u.role === 'gerente') && somethingToChase() ? `<button class="fab" data-action="cobrar-pick" aria-haspopup="dialog">${icon('bell')}<span>Cobrar</span></button>` : '';
+  const fab = canCobrar() && FAB_ROUTES[r.name] && somethingToChase() ? `<button class="fab" data-action="cobrar-pick" aria-haspopup="dialog">${icon('bell')}<span>Cobrar</span></button>` : '';
   return `<div class="app${fab ? ' has-fab' : ''}${inChat ? ' app--chat' : ''}">
     <aside class="sidebar">
       <button class="side-brand" data-action="account-sheet" aria-haspopup="dialog"><span class="mono">${o.mono}</span><span><b>${esc(o.nome)}</b><small>Gestão à vista</small></span>${icon('chevD')}</button>
@@ -2249,7 +2226,6 @@ function render() {
     return;
   }
   if (S.session !== 'app') { S.session = 'app'; S.email = S.email || 'henrique@morettiarquitetura.com.br'; }
-  const role = me().role;
   let body, wide = false, title = '';
   switch (r.name) {
     case 'operacao': body = viewOperation(); wide = true; title = 'Operação'; break;
@@ -2260,7 +2236,7 @@ function render() {
     case 'conversa': body = viewChat(r.id); title = proj(r.id)?.client || ''; break;
     case 'minhas': body = viewMine(); title = 'Suas atividades'; break;
     case 'estrategica': body = viewStrategic(); wide = true; title = 'Visão estratégica'; break;
-    default: body = role === 'diretor' ? viewHomeDirector() : role === 'gerente' ? viewHomeManager() : viewMine(); title = role === 'projetista' ? 'Minhas' : 'Início';
+    default: body = viewInbox(); title = 'Entrada';
   }
   const key = [S.officeId, S.userId, r.name, r.id].join('|');
   const changed = key !== S.lastKey;
@@ -2291,7 +2267,7 @@ function render() {
     if (!changed && keep.caret) { input.focus({ preventScroll: true }); input.setSelectionRange(...keep.caret); }
     else if (changed && matchMedia('(hover:hover) and (pointer:fine)').matches) input.focus({ preventScroll: true });
   }
-  const lit = app.querySelector('.wi.flash'), box = lit?.getBoundingClientRect();
+  const lit = app.querySelector('.ib.flash'), box = lit?.getBoundingClientRect();
   if (box && (box.top < 0 || box.bottom > innerHeight - 160)) lit.scrollIntoView({ block: 'center', behavior: reduceMotion() ? 'auto' : 'smooth' });
 }
 function go(hash) { if (location.hash === hash) render(); else location.hash = hash; }
@@ -2302,6 +2278,7 @@ window.addEventListener('hashchange', () => {
   if (S.sheet) closeSheet(true);
   if (routeOf(location.hash).name !== 'home') S.ui.homePin = null;
   applyParams();
+  inboxOpened.add(openedKey(location.hash));
   S.prevHash = location.hash;
   render();
 });
@@ -2648,13 +2625,6 @@ const ACTIONS = {
     const r = routeOf(location.hash), a = r.name === 'atividade' && act(r.id);
     go(a && a.projeto ? `#/projeto/${a.projeto}` : r.name === 'projeto' ? '#/projetos' : r.name === 'conversa' ? '#/conversas' : '#/operacao');
   },
-  'pulse': d => {
-    Object.assign(S.ui, { fProj: '', fPessoa: '', fSemDono: false, spy: null });
-    if (d.k === 'stalled') { S.ui.projFilter = 'parados'; go('#/projetos'); }
-    if (d.k === 'late') { S.ui.opView = 'prazo'; go('#/operacao'); }
-    if (d.k === 'loose') { S.ui.opView = 'status'; S.ui.fSemDono = true; S.ui.opStatus = 'Caixa de entrada'; go('#/operacao'); }
-  },
-  'op-wait': () => { Object.assign(S.ui, { opView: 'status', opStatus: O().waitStatus, fProj: '', fPessoa: '', fSemDono: false }); go('#/operacao'); },
   'op-view': d => { if (S.ui.opView === d.v) return; S.ui.opView = d.v; S.ui.spy = null; render(); document.querySelectorAll('.list, .op-section, .board').forEach(el => el.classList.add('list-swap')); },
   'op-status': d => { if (S.ui.opStatus === d.k) return; S.ui.opStatus = d.k; render(); revealActiveTab(true); document.querySelector('.list')?.classList.add('list-swap'); },
   'jump-bucket': d => {
@@ -2678,7 +2648,17 @@ const ACTIONS = {
   'pick-status': d => { const id = S.sheet.actId; closeSheet(); setTimeout(() => setStatus(id, d.s), 140); },
   'pick-date': d => { const id = S.sheet.actId; closeSheet(); setTimeout(() => setDate(id, d.d), 140); },
   'cobrar': d => openSheet({ type: 'cobrar', actId: d.act }),
-  'home-filter': d => { S.ui.homeFilter = d.k; render(); document.querySelector('.wgroups')?.classList.add('list-swap'); },
+  'pulse': d => {
+    Object.assign(S.ui, { fProj: '', fPessoa: '', fSemDono: false, spy: null });
+    if (d.k === 'stalled') { S.ui.projFilter = 'parados'; go('#/projetos'); }
+    if (d.k === 'late') { S.ui.opView = 'prazo'; go('#/operacao'); }
+    if (d.k === 'loose') { S.ui.opView = 'status'; S.ui.fSemDono = true; S.ui.opStatus = 'Caixa de entrada'; go('#/operacao'); }
+  },
+  'inbox-fold': d => {
+    S.ui.inboxShut[d.k] = !S.ui.inboxShut[d.k];
+    render();
+    document.querySelector(`[data-action=inbox-fold][data-k="${CSS.escape(d.k)}"]`)?.focus({ preventScroll: true });
+  },
   'cobrar-pick': () => openSheet({ type: 'cobrar-pick' }),
   'search-sheet': () => openSheet({ type: 'search', q: '' }),
   'open-proj': d => { closeSheet(true); go('#/projeto/' + d.p); },
@@ -3107,7 +3087,7 @@ addEventListener('scroll', hideTip, { passive: true });
    the wave shows) never gets a wave, so scrolling a list never flashes the cards under it.
    Mouse and pen get the wave at once. Off with reduced motion; the CSS state layer still marks the press. */
 const Ripple = (() => {
-  const SEL = '.btn,.icon-btn,.tab,.side-nav a,.opt,.wi,a.wg-head,.row,.pcard,.office,.pulse-cell,.strat-entry,.quiet-link,.fab,.side-fab,.searchbar,.side-search,.seg button,.tab-btn,.dchip,.fchip,.fchip-clear,.filter-btn,button.pill,.cobrar-btn,.cal-day,.choice,.demo-switch,.side-me,.side-brand,.me-btn,.back-link,.link-out,.crow,.chat-send,.chat-proj,.ac[data-press],details.grp summary';
+  const SEL = '.btn,.icon-btn,.tab,.side-nav a,.opt,.ib,.ib-tog,.pulse-cell,.row,.pcard,.office,.fab,.side-fab,.side-search,.seg button,.tab-btn,.dchip,.fchip,.fchip-clear,.filter-btn,button.pill,.cobrar-btn,.cal-day,.choice,.demo-switch,.side-me,.side-brand,.me-btn,.back-link,.link-out,.crow,.chat-send,.chat-proj,.ac[data-press],details.grp summary';
   let pend = null, live = null;
   function spawn(host, x, y, quick) {
     const r = host.getBoundingClientRect();
