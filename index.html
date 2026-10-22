@@ -96,9 +96,10 @@ svg{display:block}
 /* ripple + state layer */
 .rpl{position:absolute;inset:0;border-radius:inherit;overflow:hidden;pointer-events:none;z-index:2}
 .rpl i{position:absolute;border-radius:50%;background:currentColor;opacity:.12;transform:scale(0);animation:rpl 420ms var(--ease-out) forwards}
-.rpl.out{opacity:0;transition:opacity 300ms linear}
+.rpl.out{animation:rpl-out 300ms linear forwards}
 @keyframes rpl{to{transform:scale(1)}}
-.btn,.icon-btn,.tab,.opt,.ib,.ib-head,.ib-tog,.pulse-cell,.inbox>*,.row,.pcard,.office,.fab,.side-fab,.side-search,.seg button,.tab-btn,.dchip,.fchip,.filter-btn,.cobrar-btn,.cal-day,.choice,.demo-switch,.side-me,.side-brand,.me-btn,.back-link,.link-out,.back-btn,.crow,.chat-send,.chat-proj,details.grp summary{position:relative}
+@keyframes rpl-out{to{opacity:0}}
+.btn,.icon-btn,.tab,.side-nav a,.opt,.ib,.ib-head,.ib-tog,.pulse-cell,.inbox>*,.row,.pcard,.office,.fab,.side-fab,.side-search,.seg button,.tab-btn,.dchip,.fchip,.filter-btn,.cobrar-btn,.cal-day,.choice,.demo-switch,.side-me,.side-brand,.me-btn,.back-link,.link-out,.back-btn,.crow,.chat-send,.chat-proj,details.grp summary{position:relative}
 
 /* ───────── type (M3 scale, Roboto) ───────── */
 .t-display{font-size:32px;line-height:40px;font-weight:700;letter-spacing:-.01em;text-wrap:balance}
@@ -2246,7 +2247,9 @@ function render() {
     chat: document.querySelector('.chat-scroll')?.scrollTop,
     caret: document.activeElement?.matches?.('.chat-input') ? [document.activeElement.selectionStart, document.activeElement.selectionEnd] : null,
   };
+  const wave = Ripple.hold(app);
   app.innerHTML = shell(r, body, { wide, title });
+  Ripple.carry(wave, app);
   document.body.classList.toggle('has-subbar', !!app.querySelector('.subbar') && !isDesktop());
   document.body.classList.toggle('in-chat', !!app.querySelector('.chat'));
   if (changed) {
@@ -2655,9 +2658,25 @@ const ACTIONS = {
     if (d.k === 'loose') { S.ui.opView = 'status'; S.ui.fSemDono = true; S.ui.opStatus = 'Caixa de entrada'; go('#/operacao'); }
   },
   'inbox-fold': d => {
-    S.ui.inboxShut[d.k] = !S.ui.inboxShut[d.k];
+    /* The group slides open or shut from whatever height it shows now, so a second tap mid-slide
+       turns it around instead of jumping. */
+    const sel = `[data-action=inbox-fold][data-k="${CSS.escape(d.k)}"]`;
+    const parts = () => { const btn = document.querySelector(sel), g = btn?.closest('.ib-grp'); return { btn, box: g?.querySelector('.ib-items'), chev: btn?.querySelector('.tog') }; };
+    const was = parts();
+    const fromH = was.box && !was.box.hidden ? was.box.getBoundingClientRect().height : 0;
+    const fromR = was.chev ? getComputedStyle(was.chev).transform : 'none';
+    const shut = S.ui.inboxShut[d.k] = !S.ui.inboxShut[d.k];
     render();
-    document.querySelector(`[data-action=inbox-fold][data-k="${CSS.escape(d.k)}"]`)?.focus({ preventScroll: true });
+    const { btn, box, chev } = parts();
+    btn?.focus({ preventScroll: true });
+    if (!box || reduceMotion()) return;
+    box.hidden = false;
+    const toH = shut ? 0 : box.getBoundingClientRect().height;
+    const ease = shut ? 'cubic-bezier(.3,0,.8,.15)' : 'cubic-bezier(.05,.7,.1,1)', duration = shut ? 200 : 300;
+    box.style.overflow = 'hidden';
+    const anim = box.animate([{ height: fromH + 'px', opacity: fromH ? 1 : 0 }, { height: toH + 'px', opacity: shut ? 0 : 1 }], { duration, easing: ease, fill: 'forwards' });
+    anim.onfinish = () => { box.style.overflow = ''; if (shut) box.hidden = true; anim.cancel(); };
+    chev?.animate([{ transform: fromR }, { transform: shut ? 'rotate(-90deg)' : 'none' }], { duration, easing: 'cubic-bezier(.2,0,0,1)' });
   },
   'cobrar-pick': () => openSheet({ type: 'cobrar-pick' }),
   'search-sheet': () => openSheet({ type: 'search', q: '' }),
@@ -3096,13 +3115,13 @@ const Ripple = (() => {
     clip.className = 'rpl'; clip.setAttribute('aria-hidden', 'true');
     clip.innerHTML = `<i style="width:${size}px;height:${size}px;left:${x - r.left - size / 2}px;top:${y - r.top - size / 2}px"></i>`;
     host.appendChild(clip);
-    live = clip;
+    live = clip; clip.__t = performance.now();
     if (quick) setTimeout(() => release(clip), 160);
   }
   function release(clip = live) {
     if (!clip) return;
     if (clip === live) live = null;
-    clip.classList.add('out');
+    clip.classList.add('out'); clip.__out = performance.now();
     setTimeout(() => clip.remove(), 420);
   }
   const drop = () => { if (pend) { clearTimeout(pend.t); pend = null; } };
@@ -3121,7 +3140,34 @@ const Ripple = (() => {
   }, { passive: true });
   document.addEventListener('pointercancel', () => { drop(); release(); }, { passive: true });
   addEventListener('scroll', () => { drop(); }, { passive: true });
-  return { SEL };
+  /* render() rebuilds the whole app, sidebar included, so a tap that navigates would cut its own wave.
+     hold() notes each wave still on screen and its host before the rebuild; carry() moves each onto its host's twin in the
+     new DOM (same tag, class and data/href) and rewinds the animation to where it was. */
+  const sig = h => [h.tagName, h.className, h.getAttribute('href'), JSON.stringify(h.dataset)].join('|');
+  const twin = (old, root) => {
+    if (!old) return null;
+    const s = sig(old), all = [...root.querySelectorAll(SEL)].filter(h => sig(h) === s);
+    return all[old.__nth] || all[0] || null;
+  };
+  const nth = (h, root) => { if (h) h.__nth = [...root.querySelectorAll(SEL)].filter(x => sig(x) === sig(h)).indexOf(h); };
+  function hold(root) {
+    nth(pend?.host, root);
+    return [...root.querySelectorAll('.rpl')].map(clip => {
+      const host = clip.parentElement; nth(host, root);
+      return { clip, host, t: performance.now() - clip.__t };
+    });
+  }
+  function carry(held, root) {
+    if (pend) pend.host = twin(pend.host, root) || pend.host;
+    for (const { clip, host: old, t } of held) {
+      const host = twin(old, root);
+      if (!host) { if (clip === live) live = null; continue; }
+      clip.querySelector('i').style.animationDelay = `-${t}ms`;
+      if (clip.__out) clip.style.animationDelay = `-${performance.now() - clip.__out}ms`;
+      host.appendChild(clip);
+    }
+  }
+  return { SEL, hold, carry };
 })();
 
 /* ============ boot ============ */
